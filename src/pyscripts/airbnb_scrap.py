@@ -139,7 +139,7 @@ def scrape_airbnb_listings():
         )
 
         html_source = driver.page_source
-        soup = BeautifulSoup(html_source)
+        soup = BeautifulSoup(html_source, features="lxml")
 
         listings = soup.find_all('div', class_='atm_dz_1osqo2v')  # Adjust selector if needed
 
