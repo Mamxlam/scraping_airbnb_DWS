@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 from selenium.common.exceptions import TimeoutException
+import time
 
 TIMEOUT=30
 
@@ -28,12 +29,18 @@ def check_div_exists(driver, div1, div2):
             return div2, listing_soup  # Alternative div exists
 
         except TimeoutException:
+            print("No Div Found!!")
             return None, None  # Neither div exists
 
 
 def fetch_properties(driver, div1, div2):
     """Fetches both price and title if one of the divs exists."""
     div_found, listing_soup = check_div_exists(driver, div1, div2)
+
+    if div_found == '_1y74zjx':
+        guestFavBehave = True
+    else:
+        guestFavBehave = False
 
     price = None
     title = None
@@ -86,12 +93,12 @@ def fetch_properties(driver, div1, div2):
             pass
 
         try:
-            isSuperhost = listing_soup.findAll('li', class_='l7n4lsf atm_9s_1o8liyq_keqd55 dir dir-ltr')[4]
-            isSuperhost = isSuperhost.text if 'Superhost' in isSuperhost else None
+            isSuperhostRet = listing_soup.findAll('li', class_='l7n4lsf atm_9s_1o8liyq_keqd55 dir dir-ltr')[4]
+            isSuperhost = isSuperhostRet.text if 'Superhost' in str(isSuperhostRet) else None
         except Exception:
+            # Print to debug case where local var unbound
+            print(isSuperhostRet)
             pass
-
-        
 
     return price, title, visit_num, beds, bedrooms, baths, isGuestFav, isSuperhost
 
@@ -113,33 +120,42 @@ def scrape_airbnb_listings():
     driver = webdriver.Chrome()
     base_url = "https://www.airbnb.com/s/Thessaloniki/homes"  # Replace with your target search
     driver.get(base_url)
+    # Wait five secs to fetch all listings. 
     time.sleep(5)
 
     current_page = 0
 
     while True:  # Loop through pages
+        current_page += 1
+        start_pg_time = time.time()
         if current_page == 2:
             break
-        current_page += 1
+
         print(f"Scraping page: {current_page}")
 
         # Wait for listings to load 
         WebDriverWait(driver, TIMEOUT).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".atm_9s_1txwivl"))
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".atm_dz_1osqo2v"))
         )
 
         html_source = driver.page_source
         soup = BeautifulSoup(html_source)
 
         listings = soup.find_all('div', class_='atm_dz_1osqo2v')  # Adjust selector if needed
-        print(len(listings))
 
         # Remove first instance as it is not listing
         listings.pop(0)
 
+        print(f"Number of listings found in page {current_page} : {len(listings)}")
+
         for listing in listings:
+            time.sleep(1.5)
             print("=====================================================================================")
-            listing_url = listing.find('a', class_='atm_uc_glywfm_18zk5v0_pynvjw')['href']  # Adjust if needed 
+            try: 
+                listing_url = listing.find('a', class_='atm_uc_glywfm_18zk5v0_pynvjw')['href']  # Adjust if needed 
+            except:
+                print("Increase time wait at initial page fetching.")
+                break
             absolute_url = f"https://www.airbnb.com{listing_url}" 
             print(f"Fetching: {absolute_url}")
 
@@ -147,16 +163,15 @@ def scrape_airbnb_listings():
 
             # Single WebDriverWait and fetch properties
             try:
-                WebDriverWait(driver, TIMEOUT).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, 'span._tyxjp1, span._1y74zjx'))
-                    # Check for either the price or title element
-                )
+                # _1y74zjx is used when in Guest Favorite mode
                 listing_wrapper(driver, 'span._tyxjp1', 'span._1y74zjx')
 
             except TimeoutException:
                 print(f"Listing details not found: {absolute_url}")
 
             driver.back()  # Go back to the listings page
+
+        print(f"Page fetching time : {time.time() - start_pg_time} seconds. ")
 
         # Find and click on the "next" button (if it exists)
         try:
