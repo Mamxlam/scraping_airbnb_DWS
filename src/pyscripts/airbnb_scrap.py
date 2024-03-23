@@ -86,8 +86,6 @@ def fetch_properties(driver, div1, div2):
             pass
 
         try:
-            # guestFavBehave = True if isGuestFav is not None else False
-
             if isGuestFav:
                 # Find div that includes the guest favorite container
                 reviewIndex = listing_soup.find('div', class_ = 'a8jhwcl atm_c8_exq1xd atm_g3_1pezo5y atm_fr_7aerd4 atm_9s_1txwivl atm_ar_1bp4okc atm_h_1h6ojuz atm_cx_t94yts atm_le_14y27yu atm_c8_8nb4eg__14195v1 atm_g3_1dpnnv7__14195v1 atm_fr_11dsdeo__14195v1 atm_cx_1l7b3ar__14195v1 atm_le_1l7b3ar__14195v1 dir dir-ltr').find_all()[1]
@@ -96,16 +94,28 @@ def fetch_properties(driver, div1, div2):
 
             # None can also be valid when few reviews have been reported
             reviewIndex = reviewIndex.text if reviewIndex else None
-
         except:
             print('except')
             pass
 
-    return price, title, guestNum, beds, bedrooms, baths, isGuestFav, isSuperhost, reviewIndex
+        try:
+            if isGuestFav:
+                # Find div that includes the guest favorite container
+                reviewNum = listing_soup.find('div', class_ = 'r16onr0j atm_c8_exq1xd atm_g3_1pezo5y atm_fr_7aerd4 atm_gq_myb0kj atm_vv_qvpr2i atm_c8_8nb4eg__14195v1 atm_g3_1dpnnv7__14195v1 atm_fr_11dsdeo__14195v1 atm_gq_idpfg4__14195v1 dir dir-ltr')
+            else:
+                reviewNum = listing_soup.find('a', class_='l1ovpqvx atm_1y33qqm_1ggndnn_10saat9 atm_17zvjtw_zk357r_10saat9 atm_w3cb4q_il40rs_10saat9 atm_1cumors_fps5y7_10saat9 atm_52zhnh_1s82m0i_10saat9 atm_jiyzzr_1d07xhn_10saat9 b1uxatsa atm_c8_1kw7nm4 atm_bx_1kw7nm4 atm_cd_1kw7nm4 atm_ci_1kw7nm4 atm_g3_1kw7nm4 atm_9j_tlke0l_1nos8r_uv4tnr atm_7l_1kw7nm4_pfnrn2 atm_rd_8stvzk_pfnrn2 c1qih7tm atm_1s_glywfm atm_26_1j28jx2 atm_3f_idpfg4 atm_9j_tlke0l atm_gi_idpfg4 atm_l8_idpfg4 atm_vb_1wugsn5 atm_7l_ujz1go atm_rd_8stvzk atm_5j_mlmjl2 atm_cs_qo5vgd atm_r3_1kw7nm4 atm_mk_h2mmj6 atm_kd_glywfm atm_9j_13gfvf7_1o5j5ji atm_7l_ujz1go_v5whe7 atm_rd_8stvzk_v5whe7 atm_7l_h5wwlf_1nos8r_uv4tnr atm_rd_8stvzk_1nos8r_uv4tnr atm_7l_xgd4j5_4fughm_uv4tnr atm_rd_8stvzk_4fughm_uv4tnr atm_rd_8stvzk_xggcrc_uv4tnr atm_7l_1eisd1c_csw3t1 atm_rd_8stvzk_csw3t1 atm_3f_glywfm_jo46a5 atm_l8_idpfg4_jo46a5 atm_gi_idpfg4_jo46a5 atm_3f_glywfm_1icshfk atm_kd_glywfm_19774hq atm_7l_ujz1go_1w3cfyq atm_rd_8stvzk_1w3cfyq atm_uc_x37zl0_1w3cfyq atm_70_1ocnt96_1w3cfyq atm_uc_glywfm_1w3cfyq_1rrf6b5 atm_7l_ujz1go_18zk5v0 atm_rd_8stvzk_18zk5v0 atm_uc_x37zl0_18zk5v0 atm_70_1ocnt96_18zk5v0 atm_uc_glywfm_18zk5v0_1rrf6b5 atm_7l_xgd4j5_1o5j5ji atm_rd_8stvzk_1o5j5ji atm_rd_8stvzk_1mj13j2 dir dir-ltr')
+
+            # None can also be valid when few reviews have been reported
+            reviewNum = reviewNum.text if reviewNum else None
+        except:
+            print('except2')
+            pass
+
+    return price, title, guestNum, beds, bedrooms, baths, isGuestFav, isSuperhost, reviewIndex, reviewNum
 
 
 def listing_wrapper(driver, div1, div2):
-    price, title, visit_num, beds, bedrooms, baths, isGuestFav, isSuperhost, reviewIndex = fetch_properties(driver, div1, div2)
+    price, title, visit_num, beds, bedrooms, baths, isGuestFav, isSuperhost, reviewIndex, reviewNum = fetch_properties(driver, div1, div2)
     print(f"Price: {price}")
     print(f"Title: {title}")
     print(f"Visitors: {visit_num}")
@@ -115,6 +125,7 @@ def listing_wrapper(driver, div1, div2):
     print(f"Guest Favorite : {isGuestFav}")
     print(f"Superhost : {isSuperhost}")
     print(f"Review Index : {reviewIndex}")
+    print(f"Number of reviews : {reviewNum}")
 
 
 
