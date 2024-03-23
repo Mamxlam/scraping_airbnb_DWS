@@ -7,8 +7,55 @@ from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 from selenium.common.exceptions import TimeoutException
 import time
+import pandas as pd
+import numpy as np
+import logging
+import sys
+import os
+from datetime import datetime
+
+script_path = os.path.abspath(sys.argv[0])
+print(f"The path of the currently executing script is: {script_path}")
+# Go up three levels
+parent_directory = os.path.dirname(script_path)
+for _ in range(2):
+    parent_directory = os.path.dirname(parent_directory)
+
+# Configure logging
+current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
+logging.basicConfig(filename=parent_directory+f'/logs/scrapapp_{current_time}.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Create a handler for writing log messages to the standard output (console)
+console_handler = logging.StreamHandler(sys.stdout)
+console_handler.setLevel(logging.INFO)
+
+# Create a formatter for the console handler
+console_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+
+# Add the formatter to the console handler
+console_handler.setFormatter(console_formatter)
+
+# Add the console handler to the root logger
+logging.getLogger('').addHandler(console_handler)
+
+logging.info(f"Logfile will be saved at path: {parent_directory+f'/logs/scrapapp_{current_time}.log'}")
+logging.info(f"Data will be saved at path: {parent_directory+f"/data/listing_data_{current_time}.csv"}")
 
 TIMEOUT=30
+PAGE_TO_BREAK=3
+COLUMNS = [
+    'Price', 'Title', 'Visitors', 'Beds', 'Bedrooms', 'Baths', 
+    'Guest Favorite', 'Superhost', 'Review Index', 'Number of reviews', 
+    'Host Name', 'Characteristics', 'Latitude', 'Longitude'
+]
+
+listing_data_df = pd.DataFrame(columns=COLUMNS)
+
+def export_data():
+    global current_time
+    global listing_data_df
+    listing_data_df.to_csv(parent_directory+f"/data/listing_data_{current_time}.csv")
 
 def find_geoloc(driver):
     while True:
@@ -28,35 +75,36 @@ def find_geoloc(driver):
                 lng = google_maps_links[0].split('@')[1].split(',')[1]
                 return lat, lng
             else:
-                print("Found multiple google maps links")
-                print(google_maps_links)
+                logging.error("Found multiple google maps links")
+                logging.info(google_maps_links)
                 return None,None
 
         except:
-            print("Geoloc could not be identified.")
+            logging.error("Geoloc could not be identified.")
             pass
 
 def check_div_exists(driver, div1, div2):
-    try:
-        # Check for the preferred div first
-        WebDriverWait(driver, TIMEOUT-20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, div1))
-        )
-        listing_soup = BeautifulSoup(driver.page_source, 'html.parser')
-        return div1, listing_soup  # Preferred div exists
-
-    except TimeoutException:
+    while True:
         try:
-            # If the first one doesn't exist, check the other
-            WebDriverWait(driver, TIMEOUT-20).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, div2))
+            # Check for the preferred div first
+            WebDriverWait(driver, TIMEOUT-10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, div1))
             )
             listing_soup = BeautifulSoup(driver.page_source, 'html.parser')
-            return div2, listing_soup  # Alternative div exists
+            return div1, listing_soup  # Preferred div exists
 
         except TimeoutException:
-            print("No Div Found!!")
-            return None, None  # Neither div exists
+            try:
+                # If the first one doesn't exist, check the other
+                WebDriverWait(driver, TIMEOUT-10).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, div2))
+                )
+                listing_soup = BeautifulSoup(driver.page_source, 'html.parser')
+                return div2, listing_soup  # Alternative div exists
+
+            except TimeoutException:
+                logging.error("No Div Found!! Retrying...")
+                pass
 
 def infolist_eval(room_info, infotype, exceptCheck=None):
     if exceptCheck is None:
@@ -121,7 +169,7 @@ def fetch_properties(driver, div1, div2):
             # None can also be valid when few reviews have been reported
             reviewIndex = reviewIndex.text if reviewIndex else None
         except:
-            print('except')
+            logging.error('except')
             pass
 
         try:
@@ -134,7 +182,7 @@ def fetch_properties(driver, div1, div2):
             # None can also be valid when few reviews have been reported
             reviewNum = reviewNum.text if reviewNum else None
         except:
-            print('except2')
+            logging.error('except2')
             pass
 
         try:
@@ -164,20 +212,38 @@ def fetch_properties(driver, div1, div2):
 
 def listing_wrapper(driver, div1, div2):
     price, title, visit_num, beds, bedrooms, baths, isGuestFav, isSuperhost, reviewIndex, reviewNum, hostname, characteristics, lat, lng = fetch_properties(driver, div1, div2)
-    print(f"Price: {price}")
-    print(f"Title: {title}")
-    print(f"Visitors: {visit_num}")
-    print(f"Beds: {beds}")
-    print(f"Bedrooms: {bedrooms}")
-    print(f"Baths: {baths}")
-    print(f"Guest Favorite : {isGuestFav}")
-    print(f"Superhost : {isSuperhost}")
-    print(f"Review Index : {reviewIndex}")
-    print(f"Number of reviews : {reviewNum}")
-    print(f"Host Name : {hostname}")
-    print(f"Characteristics : {characteristics}")
-    print(f"Latitude : {lat}")
-    print(f"Longitude : {lng}")
+    logging.info(f"Price: {price}")
+    logging.info(f"Title: {title}")
+    logging.info(f"Visitors: {visit_num}")
+    logging.info(f"Beds: {beds}")
+    logging.info(f"Bedrooms: {bedrooms}")
+    logging.info(f"Baths: {baths}")
+    logging.info(f"Guest Favorite : {isGuestFav}")
+    logging.info(f"Superhost : {isSuperhost}")
+    logging.info(f"Review Index : {reviewIndex}")
+    logging.info(f"Number of reviews : {reviewNum}")
+    logging.info(f"Host Name : {hostname}")
+    logging.info(f"Characteristics : {characteristics}")
+    logging.info(f"Latitude : {lat}")
+    logging.info(f"Longitude : {lng}")
+
+    global listing_data_df
+    listing_data_df = listing_data_df._append({
+        'Price': price,
+        'Title': title,
+        'Visitors': visit_num,
+        'Beds': beds,
+        'Bedrooms': bedrooms,
+        'Baths': baths,
+        'Guest Favorite': isGuestFav,
+        'Superhost': isSuperhost,
+        'Review Index': reviewIndex,
+        'Number of reviews': reviewNum,
+        'Host Name': hostname,
+        'Characteristics': characteristics,
+        'Latitude': lat,
+        'Longitude': lng
+    }, ignore_index=True)
 
 
 
@@ -193,10 +259,12 @@ def scrape_airbnb_listings():
     while True:  # Loop through pages
         current_page += 1
         start_pg_time = time.time()
-        if current_page == 2:
+        if current_page == PAGE_TO_BREAK:
+            logging.info(f"Reached page {current_page}, breaking...")
+            export_data()
             break
 
-        print(f"Scraping page: {current_page}")
+        logging.info(f"Scraping page: {current_page}")
 
         # Wait for listings to load 
         WebDriverWait(driver, TIMEOUT).until(
@@ -211,18 +279,19 @@ def scrape_airbnb_listings():
         # Remove first instance as it is not listing
         listings.pop(0)
 
-        print(f"Number of listings found in page {current_page} : {len(listings)}")
+        logging.info(f"Number of listings found in page {current_page} : {len(listings)}")
 
-        for listing in listings:
+        for listing_num, listing in enumerate(listings):
             time.sleep(1.5)
-            print("=====================================================================================")
+            logging.info("=====================================================================================")
+            logging.info(f"Fetching listing {listing_num+1} out of {len(listings)} listings in page {current_page}.")
             try: 
                 listing_url = listing.find('a', class_='atm_uc_glywfm_18zk5v0_pynvjw')['href']  # Adjust if needed 
             except:
-                print("Increase time wait at initial page fetching.")
+                logging.error("Increase time wait at initial page fetching.")
                 break
             absolute_url = f"https://www.airbnb.com{listing_url}" 
-            print(f"Fetching: {absolute_url}")
+            logging.info(f"URL: {absolute_url}")
 
             driver.get(absolute_url)
 
@@ -230,10 +299,11 @@ def scrape_airbnb_listings():
             try:
                 time.sleep(2)
                 popup = driver.find_element(By.XPATH, '/html/body/div[9]/div/div/section/div/div/div[2]/div')
+                logging.info("Translate Popup found. Closing...")
                 if popup:
                     popup.send_keys(Keys.ESCAPE)
             except:
-                print("Translate Popup not found.")
+                logging.info("Translate Popup not found.")
 
             # Wait to fetch screen
             time.sleep(1)
@@ -246,11 +316,11 @@ def scrape_airbnb_listings():
                 listing_wrapper(driver, 'span._tyxjp1', 'span._1y74zjx')
 
             except TimeoutException:
-                print(f"Listing details not found: {absolute_url}")
+                logging.info(f"Listing details not found: {absolute_url}")
 
             driver.back()  # Go back to the listings page
 
-        print(f"Page fetching time : {time.time() - start_pg_time} seconds. ")
+        logging.info(f"Page fetching time : {time.time() - start_pg_time} seconds. ")
 
         # Find and click on the "next" button (if it exists)
         try:
@@ -258,7 +328,10 @@ def scrape_airbnb_listings():
             next_button.click()
             time.sleep(2)  # Small delay to allow page to load
         except:
-            print("Reached the end of the listings!")
+            logging.info("Reached the end of the listings!")
+            export_data()
+            # TODO
+            # DataFrame Post Processing
             break
 
     driver.quit()
