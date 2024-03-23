@@ -3,12 +3,38 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 from selenium.common.exceptions import TimeoutException
 import time
 
 TIMEOUT=30
 
+def find_geoloc(driver):
+    while True:
+        try:
+            PATTERN = 'google.com/maps/@'
+            soup = BeautifulSoup(driver.page_source, 'html.parser')
+
+            # Find the Google Maps href
+            google_maps_links = []
+
+            for link in soup.find_all('a', {'href': True}):
+                if PATTERN in link['href']:
+                    google_maps_links.append(link['href'])
+
+            if len(google_maps_links) == 1:
+                lat = google_maps_links[0].split('@')[1].split(',')[0]
+                lng = google_maps_links[0].split('@')[1].split(',')[1]
+                return lat, lng
+            else:
+                print("Found multiple google maps links")
+                print(google_maps_links)
+                return None,None
+
+        except:
+            print("Geoloc could not be identified.")
+            pass
 
 def check_div_exists(driver, div1, div2):
     try:
@@ -22,7 +48,7 @@ def check_div_exists(driver, div1, div2):
     except TimeoutException:
         try:
             # If the first one doesn't exist, check the other
-            WebDriverWait(driver, TIMEOUT).until(
+            WebDriverWait(driver, TIMEOUT-20).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, div2))
             )
             listing_soup = BeautifulSoup(driver.page_source, 'html.parser')
@@ -111,11 +137,33 @@ def fetch_properties(driver, div1, div2):
             print('except2')
             pass
 
-    return price, title, guestNum, beds, bedrooms, baths, isGuestFav, isSuperhost, reviewIndex, reviewNum
+        try:
+            # Find hostname 
+            hostname = listing_soup.find('div', class_='t1pxe1a4 atm_c8_8ycq01 atm_g3_adnk3f atm_fr_rvubnj atm_cs_qo5vgd dir dir-ltr')
+            hostname = hostname.text if hostname else None
+        except Exception:
+            pass
+
+        try: 
+            char_info_container = listing_soup.find('div', class_='i1jq8c6w atm_9s_1txwivl atm_ar_1bp4okc atm_cx_1tcgj5g dir dir-ltr')
+
+            char_info = char_info_container.findAll('h3', class_='hpipapi atm_7l_1kw7nm4 atm_c8_1x4eueo atm_cs_1kw7nm4 atm_g3_1kw7nm4 atm_gi_idpfg4 atm_l8_idpfg4 atm_kd_idpfg4_pfnrn2 dir dir-ltr')
+            char_info = [info.text for _, info in enumerate(char_info)]
+            characteristics = ", ".join(char_info) if len(char_info)>0 else None
+        except:
+            pass
+
+        # Catch longtitude, latitude
+        try:
+            lat, lng = find_geoloc(driver)
+        except:
+            pass
+
+    return price, title, guestNum, beds, bedrooms, baths, isGuestFav, isSuperhost, reviewIndex, reviewNum, hostname, characteristics, lat, lng
 
 
 def listing_wrapper(driver, div1, div2):
-    price, title, visit_num, beds, bedrooms, baths, isGuestFav, isSuperhost, reviewIndex, reviewNum = fetch_properties(driver, div1, div2)
+    price, title, visit_num, beds, bedrooms, baths, isGuestFav, isSuperhost, reviewIndex, reviewNum, hostname, characteristics, lat, lng = fetch_properties(driver, div1, div2)
     print(f"Price: {price}")
     print(f"Title: {title}")
     print(f"Visitors: {visit_num}")
@@ -126,6 +174,10 @@ def listing_wrapper(driver, div1, div2):
     print(f"Superhost : {isSuperhost}")
     print(f"Review Index : {reviewIndex}")
     print(f"Number of reviews : {reviewNum}")
+    print(f"Host Name : {hostname}")
+    print(f"Characteristics : {characteristics}")
+    print(f"Latitude : {lat}")
+    print(f"Longitude : {lng}")
 
 
 
@@ -173,6 +225,20 @@ def scrape_airbnb_listings():
             print(f"Fetching: {absolute_url}")
 
             driver.get(absolute_url)
+
+            # Remove translate popup case
+            try:
+                time.sleep(2)
+                popup = driver.find_element(By.XPATH, '/html/body/div[9]/div/div/section/div/div/div[2]/div')
+                if popup:
+                    popup.send_keys(Keys.ESCAPE)
+            except:
+                print("Translate Popup not found.")
+
+            # Wait to fetch screen
+            time.sleep(1)
+            driver.execute_script("window.scrollBy(0,4000)")
+            time.sleep(1)
 
             # Single WebDriverWait and fetch properties
             try:
