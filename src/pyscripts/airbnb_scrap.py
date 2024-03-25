@@ -13,6 +13,7 @@ import logging
 import sys
 import os
 from datetime import datetime
+import re
 
 script_path = os.path.abspath(sys.argv[0])
 print(f"The path of the currently executing script is: {script_path}")
@@ -43,7 +44,7 @@ logging.info(f"Logfile will be saved at path: {parent_directory+f'/logs/scrapapp
 logging.info(f"Data will be saved at path: {parent_directory+f"/data/listing_data_{current_time}.csv"}")
 
 TIMEOUT=30
-PAGE_TO_BREAK=3
+PAGE_TO_BREAK=2
 COLUMNS = [
     'Price', 'Title', 'Visitors', 'Beds', 'Bedrooms', 'Baths', 
     'Guest Favorite', 'Superhost', 'Review Index', 'Number of reviews', 
@@ -52,10 +53,70 @@ COLUMNS = [
 
 listing_data_df = pd.DataFrame(columns=COLUMNS)
 
+# Helper function to extract numbers from text
+def extract_number(text):
+    """
+    Extract numerical value from text using regular expression.
+    
+    Parameters:
+    text (str): Text containing numerical value.
+    
+    Returns:
+    int or None: Extracted numerical value or None if no match.
+    """
+    match = re.search(r'\d+', str(text))
+    return int(match.group()) if match else None
+
+def post_proc(df):
+    """
+    Post-processing function to clean and transform the input dataframe.
+    
+    Parameters:
+    df (DataFrame): Input dataframe containing raw data.
+    
+    Returns:
+    DataFrame: Processed dataframe ready for modeling.
+    """
+    
+    # Price: remove currency symbol and convert to numeric
+    df['Price'] = df['Price'].str.replace('€', '').str.strip().astype(float)
+    df['Host Name'] = df['Host Name'].str.replace('Hosted by ', '')
+
+    # Extract numerical values from text columns
+    df['Visitors'] = df['Visitors'].apply(extract_number)
+    df['Beds'] = df['Beds'].apply(extract_number)
+    df['Bedrooms'] = df['Bedrooms'].apply(extract_number)
+    df['Baths'] = df['Baths'].apply(extract_number)
+    df['Number of reviews'] = df['Number of reviews'].apply(extract_number)
+
+    # Convert Review Index to float
+    df['Review Index'] = df['Review Index'].apply(extract_number).astype(float)
+
+    # Convert categorical columns to binary
+    df['Guest Favorite'] = df['Guest Favorite'].apply(lambda x: 1 if x == 'Guest favorite' else 0)
+    df['Superhost'] = df['Superhost'].apply(lambda x: 1 if x == 'Superhost' else 0)
+
+    # Assuming Latitude and Longitude are already in numeric format
+    # If not, convert them to numeric here
+
+    # Characteristics processing
+    characteristics_to_track = ['Superhost', 'Free cancellation', 'Fast wifi', 'Dedicated workspace', 'Great location', 'Furry friends', 'Highly rated', 'Self check-in', 'Great check-in']
+
+    # Create new columns for each characteristic and set binary values
+    for char in characteristics_to_track:
+        df['char_' + char.lower().replace(' ', '_')] = df['Characteristics'].str.contains(char).astype(int)
+
+    # Drop the original 'Characteristics' column
+    df.drop('Characteristics', axis=1, inplace=True)
+
+    return df
+
 def export_data():
     global current_time
     global listing_data_df
     listing_data_df.to_csv(parent_directory+f"/data/listing_data_{current_time}.csv")
+    listing_data_df = post_proc(listing_data_df)
+    listing_data_df.to_csv(parent_directory+f"/data/listing_data_postproc_{current_time}.csv")
 
 def find_geoloc(driver):
     while True:
@@ -125,6 +186,7 @@ def fetch_properties(driver, div1, div2):
     beds = None
     bedrooms = None
     reviewIndex = None
+    characteristics = None
 
     if div_found:
         try:
