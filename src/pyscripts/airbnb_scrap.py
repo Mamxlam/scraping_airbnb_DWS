@@ -44,7 +44,7 @@ logging.info(f"Logfile will be saved at path: {parent_directory+f'/logs/scrapapp
 logging.info(f"Data will be saved at path: {parent_directory+f"/data/listing_data_{current_time}.csv"}")
 
 TIMEOUT=30
-PAGE_TO_BREAK=2
+PAGE_TO_BREAK=18
 COLUMNS = [
     'Price', 'Title', 'Visitors', 'Beds', 'Bedrooms', 'Baths', 
     'Guest Favorite', 'Superhost', 'Review Index', 'Number of reviews', 
@@ -93,18 +93,22 @@ def post_proc(df):
     df['Review Index'] = df['Review Index'].apply(extract_number).astype(float)
 
     # Convert categorical columns to binary
-    df['Guest Favorite'] = df['Guest Favorite'].apply(lambda x: 1 if x == 'Guest favorite' else 0)
-    df['Superhost'] = df['Superhost'].apply(lambda x: 1 if x == 'Superhost' else 0)
+    df['Guest Favorite'] = df['Guest Favorite'].astype(str).apply(lambda x: 1 if 'favorite' in x else 0)
+    df['Superhost'] = df['Superhost'].astype(str).apply(lambda x: 1 if 'Superhost' in x else 0)
 
     # Assuming Latitude and Longitude are already in numeric format
     # If not, convert them to numeric here
 
     # Characteristics processing
-    characteristics_to_track = ['Superhost', 'Free cancellation', 'Fast wifi', 'Dedicated workspace', 'Great location', 'Furry friends', 'Highly rated', 'Self check-in', 'Great check-in']
+    characteristics_to_track = ['Superhost', 'Free cancellation', 'Fast wifi', 'Dedicated workspace', 'Great location', 'Furry friends', 'Highly rated', 'Self check-in', 'Great check-in', 'remote work']
 
-    # Create new columns for each characteristic and set binary values
+# Create new columns for each characteristic and set binary values
     for char in characteristics_to_track:
-        df['char_' + char.lower().replace(' ', '_')] = df['Characteristics'].str.contains(char).astype(int)
+        # Check for NaN values in 'Characteristics' column
+        if not df['Characteristics'].isna().all():
+            df['char_' + char.lower().replace(' ', '_')] = df['Characteristics'].str.contains(char, na=False).astype(int)
+        else:
+            df['char_' + char.lower().replace(' ', '_')] = 0
 
     # Drop the original 'Characteristics' column
     df.drop('Characteristics', axis=1, inplace=True)
