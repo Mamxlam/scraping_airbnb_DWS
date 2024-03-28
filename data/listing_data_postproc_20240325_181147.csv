@@ -1,0 +1,524 @@
+,Price,Title,Visitors,Beds,Bedrooms,Baths,Guest Favorite,Superhost,Review Index,Number of reviews,Host Name,Latitude,Longitude,char_superhost,char_free_cancellation,char_fast_wifi,char_dedicated_workspace,char_great_location,char_furry_friends,char_highly_rated,char_self_check-in,char_great_check-in,char_remote_work
+0,65.0,DoorMat#13 Black Mirror#Jacuzzi,2.0,1.0,1.0,1.0,0,0,4.0,20.0,Mario,40.6282,22.9523,0,0,0,0,1,0,0,1,1,0
+1,55.0,"Elegant Suite In The Center, The Luxury Suites",4.0,2.0,1.0,1.0,0,0,4.0,81.0,Dimitris,40.63865,22.9376,0,1,0,0,0,0,0,1,1,0
+2,29.0,"Waterfront #11Design- CozyCityCenter ""Try It Tiny""",2.0,1.0,1.0,1.0,0,1,4.0,551.0,Alexandra,40.6318,22.9417,1,1,0,0,0,0,0,1,0,0
+3,40.0,Innovative Minimal Fresh suite in Ladadika,4.0,1.0,1.0,1.0,0,1,4.0,101.0,Innovation,40.63672,22.93779,1,1,0,0,0,0,0,1,0,0
+4,57.0,* CK Modern Loft Near Seaside *,4.0,2.0,1.0,1.0,1,0,5.0,18.0,Κωνσταντίνος,40.6053,22.9537,0,0,0,0,0,0,1,1,1,0
+5,46.0,ifestos By Socrates Junior Houses,3.0,1.0,1.0,1.0,0,1,,,Socrates Junior Houses,40.6431227,22.939386,1,1,0,0,0,0,0,1,0,0
+6,117.0,Skyline Suite&Spa,3.0,1.0,1.0,1.0,1,1,5.0,37.0,Anastasios-Vasileios,40.6404933,22.9602335,1,0,0,0,1,0,0,0,1,0
+7,40.0,Star View Suite,2.0,1.0,1.0,1.0,0,1,4.0,26.0,Xenia,40.6343,22.9464,1,0,0,0,1,0,0,1,0,0
+8,89.0,Oasis - Luxurious studio in the heart of the city,3.0,2.0,1.0,1.0,1,1,5.0,55.0,Ioannis,40.6283,22.9482,1,0,0,0,1,0,0,0,0,1
+9,36.0,Escape ... in style // Downtown Seaside Gate_301,2.0,1.0,1.0,1.0,0,1,4.0,340.0,Mike,40.63145,22.94071,0,1,1,0,0,0,0,1,0,0
+10,95.0,Suite Blanche by Aristotelous Square,4.0,3.0,1.0,1.0,1,0,5.0,6.0,Evripidis,40.6324,22.942,0,1,1,0,0,0,0,1,0,0
+11,65.0,URBAN SEASIDE STUDIO,5.0,2.0,1.0,1.0,1,1,4.0,301.0,Elina,40.6318,22.9417,1,1,0,0,0,0,0,1,0,0
+12,103.0,City Center Luxury Penthouse,4.0,2.0,2.0,2.0,1,1,4.0,325.0,Mara,40.63666,22.94144,1,1,0,0,1,0,0,0,0,0
+13,250.0,#Primavera: Seafront apt with White tower view,6.0,3.0,3.0,1.0,1,0,5.0,12.0,Halu!,40.62765,22.94725,0,1,0,1,1,0,0,0,0,0
+14,243.0,Aria: Lux seafront apt with White Tower view,4.0,2.0,2.0,2.0,0,0,5.0,4.0,Halu!,40.626394,22.9485903,0,1,0,1,0,0,0,1,0,0
+15,359.0,F & B Collection - Luxury Seafront 2 Bedroom Flat,4.0,2.0,2.0,2.0,1,0,5.0,6.0,Dimitris,40.6291439,22.9457213,0,0,0,0,1,0,0,0,1,0
+16,88.0,Mandarin by halu! : Street view apt,2.0,1.0,1.0,1.0,0,0,5.0,8.0,Halu!,40.6287589,22.9450015,0,1,0,0,0,0,0,1,0,1
+17,49.0,"Adelle Studio #31, The Luxury Suites",3.0,2.0,,1.0,0,0,4.0,43.0,The Luxury Suites,40.63775,22.93937,0,1,0,0,0,0,0,1,0,0
+18,40.0,Welcome!,2.0,1.0,1.0,1.0,1,1,4.0,185.0,Danai,40.63188,22.94318,1,1,0,1,0,0,0,0,0,0
+19,38.0,White tower city center loft 2,2.0,1.0,1.0,1.0,0,1,4.0,58.0,Hlias,40.6276,22.9494,1,0,0,0,0,0,0,1,0,1
+20,50.0,G&G city center luxury studio 1-3 persons,3.0,2.0,1.0,1.0,1,1,4.0,27.0,Γεωργιος,40.6314,22.9427,1,0,0,0,0,0,0,1,0,1
+21,33.0,Waterfront #42Design - CozyCityCenter Flat,2.0,1.0,1.0,1.0,1,1,4.0,601.0,Alexandra,40.6318,22.9416,0,1,0,1,0,0,0,1,0,0
+22,110.0,Veranda Residence,5.0,3.0,2.0,1.0,1,1,4.0,66.0,Nancy,40.63364,22.94892,0,1,0,1,0,0,0,1,0,0
+23,37.0,Carpe Diem SKG,2.0,,1.0,1.0,1,1,4.0,37.0,Despoina,40.6415,22.9361,0,1,1,0,0,0,0,1,0,0
+24,37.0,"V18 Boutique Rooms, Nilie Hospitality MGMT",2.0,1.0,1.0,1.0,0,0,,1.0,Nilie Premium Hospitality MGMT,40.6431641,22.9341033,0,0,0,0,0,0,0,1,0,0
+25,67.0,Santa Sophia’s Elegant Pop Suite,2.0,1.0,1.0,1.0,1,1,5.0,29.0,Alexandros,40.6333,22.9484,0,1,0,0,0,0,0,1,0,1
+26,50.0,Waterfront #41Design - CozyCityCenter Flat,4.0,2.0,1.0,1.0,0,1,4.0,616.0,Alexandra,40.6318,22.9417,0,1,0,1,0,0,0,1,0,0
+27,36.0,L & G  studio in the center of the city,2.0,2.0,,1.0,1,0,4.0,214.0,Λίνα,40.63684,22.95163,0,0,0,0,1,0,1,0,1,0
+28,80.0,Waterfront Flat with 180° Sea View,3.0,2.0,1.0,1.0,0,1,4.0,228.0,Elena,40.5076,22.9201,0,1,0,1,0,0,0,1,0,0
+29,81.0,Innovative upscale 2-BR flat in premium location,4.0,2.0,2.0,1.0,1,1,4.0,91.0,Innovation,40.6303,22.9452,1,0,0,0,1,0,0,1,0,0
+30,44.0,Hidden Island Oasis near the city center,3.0,1.0,1.0,1.0,1,0,4.0,45.0,Vasilis,40.61918,22.95547,0,1,0,0,0,0,1,1,0,0
+31,66.0,Lavish Residences - Agias Sofias,3.0,2.0,1.0,1.0,1,0,4.0,24.0,Lavish Elegance And Luxury Lifestyle,40.632,22.9449,0,0,0,0,1,0,0,1,1,0
+32,49.0,Sky roof apartments#1,3.0,1.0,,1.0,0,1,4.0,321.0,Fani,40.63398,22.9396,1,1,0,0,0,0,0,1,0,0
+33,85.0,Innovative top floor breathtaking flat in Ladadika,4.0,2.0,1.0,1.0,0,1,4.0,105.0,Innovation,40.63683,22.93844,1,1,0,0,0,0,0,1,0,0
+34,43.0,Modern apartment.,4.0,2.0,1.0,1.0,1,1,5.0,38.0,Κωνσταντίνος,40.61469,22.98336,1,1,1,0,0,0,0,0,0,0
+35,27.0,Convenience Spot @ Dragoumi,3.0,,1.0,1.0,0,0,,2.0,Viveta,40.64075,22.94357,0,0,0,0,0,1,0,1,0,0
+36,35.0,Escape ... in style // Downtown Seaside Gate_306,2.0,1.0,1.0,1.0,0,1,4.0,353.0,Mike,40.6318,22.9417,0,1,0,0,0,0,0,1,0,1
+37,45.0,"Ultima #2, Nilie Hospitality MGMT",3.0,1.0,1.0,1.0,0,0,,2.0,Nilie Premium Hospitality MGMT,40.6383849,22.9400138,0,0,0,0,0,0,0,1,0,0
+38,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+39,25.0,Double room with 2 single beds,,2.0,2.0,,1,1,4.0,57.0,Stay with Maria Eleni,40.6229,22.96706,0,1,0,0,0,0,0,0,0,0
+40,48.0,SKG Stories: Relax,2.0,1.0,1.0,1.0,1,1,4.0,491.0,Eleni,40.6337,22.9473,0,1,0,0,0,0,0,1,0,1
+41,49.0,"Adelle Studio #34, The Luxury Suites",3.0,2.0,,1.0,0,0,4.0,41.0,The Luxury Suites,40.63965,22.93941,0,1,0,0,0,0,0,1,0,0
+42,33.0,Waterfront #9Design - CozyCityCenter Studio,2.0,1.0,1.0,1.0,0,1,4.0,651.0,Alexandra,40.6318,22.9417,0,1,0,1,0,0,0,1,0,0
+43,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+44,38.0,Majestic balcony studio overlooking city's heart,2.0,1.0,1.0,1.0,0,0,4.0,184.0,Vasilis,40.63499,22.9368,0,1,0,0,0,0,1,1,0,0
+45,28.0,Penthouse Kamara 47,2.0,1.0,1.0,1.0,0,1,,2.0,George,40.6326666,22.9511606,0,1,1,0,0,0,0,1,0,0
+46,44.0,"Pantheon, Nilie Hospitality MGMT",4.0,1.0,1.0,1.0,0,0,4.0,9.0,Nilie Premium Hospitality MGMT,40.6341411,22.9371348,0,0,0,0,0,0,0,1,0,0
+47,34.0,Modern studio in the heart of the city,3.0,2.0,1.0,1.0,1,1,4.0,392.0,Μαρία,40.63214,22.94413,1,1,0,1,0,0,0,0,0,0
+48,30.0,HYPNOS SKG 101(hotel style self-contained room),2.0,1.0,1.0,1.0,0,1,4.0,152.0,Stylianos,40.64178,22.93777,1,0,0,0,0,0,0,1,1,0
+49,36.0,LuxLiving Stratou Avenue Cozy,2.0,1.0,,1.0,0,1,4.0,27.0,Alexandros,40.6186,22.9581,1,1,0,0,0,0,0,1,0,0
+50,38.0,DoorMat#4 White Tower,2.0,1.0,1.0,1.0,0,0,4.0,135.0,Mario,40.62839,22.94843,0,1,0,1,0,0,0,1,0,0
+51,35.0,Studio in the center of Kalamaria,4.0,1.0,1.0,1.0,0,0,4.0,12.0,Αφροδίτη,40.5837,22.9514,0,1,0,0,1,0,0,1,0,0
+52,40.0,Private Mini Suite-Self Check-in,2.0,1.0,1.0,1.0,0,0,,2.0,Nikos,40.6371,22.9368,0,1,0,0,0,0,0,1,0,0
+53,32.0,Budget and family-friendly apartment | 200Mbps.,4.0,,1.0,1.0,0,1,5.0,3.0,Dimitrios,40.6436,22.946,1,0,0,0,0,0,0,1,0,1
+54,23.0,14 Smart tv central cozy room,2.0,1.0,1.0,1.0,0,0,4.0,112.0,Βασίλης,40.60963,22.95493,0,1,0,0,1,0,0,1,0,0
+55,49.0,Harmony studio with terrace.,3.0,,1.0,1.0,0,1,5.0,4.0,Nikolaos,40.631166,22.9442399,1,0,0,0,1,0,0,1,0,0
+56,30.0,Tiny Loft Studio 17m² in the heart of Thessaloniki,2.0,1.0,1.0,1.0,0,0,4.0,202.0,Dimitrios,40.63396,22.94563,0,1,0,0,1,0,0,1,0,0
+57,37.0,midtown arc studio,3.0,2.0,,1.0,1,1,4.0,217.0,Stelios,40.6342,22.9458,1,1,0,0,1,0,0,0,0,0
+58,43.0,Waterfront #25Design - CozyCityCenter Flat,4.0,1.0,1.0,1.0,1,1,4.0,526.0,Alexandra,40.6318,22.9417,0,1,0,1,0,0,0,1,0,0
+59,43.0,"WallStreet #22, The Luxury Suites",3.0,2.0,1.0,1.0,0,0,4.0,40.0,The Luxury Suites,40.64121,22.93725,0,1,0,0,0,0,0,1,0,0
+60,42.0,"Big Apple #2.6, Nilie Hospitality MGMT",3.0,1.0,1.0,1.0,0,0,4.0,15.0,Nilie Premium Hospitality MGMT,40.64028,22.93825,0,0,0,0,0,0,0,1,0,0
+61,40.0,Dialeti Loft Apartment,2.0,1.0,1.0,1.0,0,1,4.0,19.0,Fani,40.6291474,22.9514332,1,1,0,0,0,0,0,1,0,0
+62,38.0,Escape ... in style // Downtown Seaside Gate_303,2.0,1.0,1.0,1.0,0,1,4.0,269.0,Mike,40.6318,22.9417,0,1,1,0,0,0,0,1,0,0
+63,32.0,Waterfront #8Design - Bubblegum Box,2.0,1.0,1.0,1.0,0,1,4.0,739.0,Alexandra,40.6318,22.9417,1,1,0,0,0,0,0,1,0,0
+64,21.0,Sweet Little House,2.0,1.0,1.0,1.0,0,1,4.0,123.0,Theodoros,40.66211,22.91335,1,0,1,0,0,0,0,1,0,0
+65,61.0,ANGEL(404)JACUZZISUITE AMA685900,4.0,1.0,1.0,1.0,0,1,4.0,252.0,Leonidas,40.63991,22.93959,1,1,0,0,0,0,0,1,0,0
+66,34.0,Natural modern studio in the heart of Thessaloniki,2.0,1.0,1.0,1.0,0,1,5.0,4.0,Innovation,40.6471133,22.9240689,1,1,0,0,0,0,0,1,0,0
+67,31.0,Villanova - Sapphire Suite,4.0,2.0,1.0,1.0,1,1,5.0,7.0,Polina,40.642923,22.9334532,1,1,0,0,0,0,0,1,0,0
+68,65.0,A glam chic apartment in the ♥️ of the city,3.0,1.0,1.0,1.0,1,1,5.0,79.0,Korinna,40.63067,22.94315,1,0,0,0,1,0,0,1,0,0
+69,23.0,#2 City center Ariadni's studio- Huge balcony,2.0,2.0,,1.0,1,1,4.0,205.0,Ariadni,40.62041,22.95341,1,1,0,0,0,0,0,0,1,0
+70,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+71,42.0,Sea view Aristotelous square,3.0,2.0,,1.0,1,1,4.0,21.0,Ermis,40.63211,22.9393,1,1,0,0,0,0,0,1,0,0
+72,74.0,Innovative Boutique flat in the heart of the city,4.0,2.0,1.0,1.0,1,1,4.0,139.0,Innovation,40.63031,22.94555,1,1,0,0,0,0,0,1,0,0
+73,67.0,Aristotelous Square Luxury Studio,4.0,3.0,,1.0,1,1,4.0,260.0,Vaia,40.63591,22.94492,1,1,0,0,0,0,0,1,0,0
+74,98.0,Central Luxury apartment + view,4.0,2.0,2.0,1.0,0,1,,,Apostolos,40.6411,22.9308,1,1,0,0,0,0,0,1,0,0
+75,50.0,Big Luxury apartment in Thessaloniki,4.0,2.0,1.0,1.0,1,1,4.0,81.0,My Street,40.6382,22.93754,1,0,0,0,0,0,0,1,1,0
+76,39.0,Futuristic chic oasis in the heart of the city,4.0,2.0,1.0,1.0,0,1,,1.0,Innovation,40.6469,22.9234,1,1,0,0,0,0,0,1,0,0
+77,85.0,Couple-in magical suite with jacuzzi,2.0,1.0,1.0,1.0,1,0,4.0,10.0,ענבר,40.6333867,22.942357,0,0,0,0,1,0,0,1,1,0
+78,84.0,Heaven on the 7th (Aparment B),5.0,2.0,2.0,1.0,0,0,5.0,4.0,Panos,40.6218726,22.9530707,0,1,0,0,1,0,0,1,0,0
+79,55.0,Urban Loft I,5.0,3.0,1.0,1.0,1,1,4.0,205.0,Eva,40.63693,22.9555,0,1,0,1,0,0,0,1,0,0
+80,45.0,TerraCity Apartment,4.0,2.0,1.0,1.0,1,1,4.0,28.0,Alexandra-Markos,40.6344095,22.9528624,1,1,0,0,0,0,0,1,0,0
+81,71.0,Marrone S.Suite°   (free parking 24/7),4.0,3.0,2.0,1.0,1,1,4.0,47.0,Panagiota,40.6168,22.9538,0,1,0,0,0,0,0,1,0,1
+82,62.0,Bright Bright C -Modern apartment with terrace,4.0,2.0,1.0,1.0,1,1,4.0,83.0,Ioannis,40.6365,22.9376,1,1,0,0,0,0,0,1,0,0
+83,86.0,"City Center, Sea view, Big private terrace",3.0,2.0,1.0,1.0,0,0,4.0,265.0,Marabou Unique Stay,40.63778,22.9356,0,1,1,0,0,0,0,1,0,0
+84,51.0,Sunny 5th floor flat with big balcony,4.0,1.0,1.0,1.0,1,1,4.0,98.0,My Street,40.6379,22.93827,1,0,0,1,0,0,0,1,0,0
+85,42.0,Contemporary Gem in the Heart of Thessaloniki,4.0,2.0,1.0,1.0,0,1,,1.0,Innovation,40.6469,22.9234,1,1,0,0,0,0,0,1,0,0
+86,53.0,✦World Heritage Site✦ Ace Location|Walk Everywhere,3.0,2.0,1.0,1.0,1,1,4.0,100.0,Panagiota,40.63764,22.94817,1,0,0,0,0,1,0,1,0,0
+87,130.0,"NEW 2019!, SKG, view to the port-marine Kalamaria!",4.0,1.0,1.0,1.0,1,1,4.0,64.0,Konstantinos,40.57645,22.94553,1,0,0,0,1,0,0,1,0,0
+88,83.0,"Divine 7thfloor apartment  'neo', city view",4.0,2.0,2.0,2.0,1,0,4.0,17.0,Thanasis,40.6067,22.9548,0,1,0,0,0,0,1,0,1,0
+89,87.0,F & B Collection - City Center Hidden Gem,3.0,2.0,1.0,1.0,1,0,5.0,6.0,Dimitris,40.6311,22.947,0,0,0,0,1,0,1,0,0,0
+90,106.0,#Oddity: Superior apartment by halu!,2.0,1.0,1.0,1.0,0,0,4.0,12.0,Halu!,40.63536,22.93527,0,1,0,1,0,0,0,1,0,0
+91,85.0,Couple-in magical suite with jacuzzi,2.0,1.0,1.0,1.0,1,0,4.0,10.0,ענבר,40.6333867,22.942357,0,0,0,0,1,0,0,1,1,0
+92,130.0,"NEW 2019!, SKG, view to the port-marine Kalamaria!",4.0,1.0,1.0,1.0,1,1,4.0,64.0,Konstantinos,40.57645,22.94553,1,0,0,0,1,0,0,1,0,0
+93,127.0,"Okto Penthouse, Nilie Hospitality MGMT",4.0,1.0,1.0,1.0,0,0,4.0,19.0,Nilie Premium Hospitality MGMT,40.63581,22.93998,0,1,0,0,1,0,0,1,0,0
+94,85.0,Elegant apartment inThessaloniki near sea & center,4.0,2.0,2.0,1.0,1,1,5.0,54.0,Στέλλα,40.6105,22.9562,1,0,0,1,0,0,0,1,0,0
+95,104.0,#Toucan by halu! apartments,4.0,2.0,2.0,1.0,0,0,4.0,21.0,Halu!,40.635234,22.948369,0,1,0,0,0,0,0,1,0,1
+96,87.0,F & B Collection - City Center Hidden Gem,3.0,2.0,1.0,1.0,1,0,5.0,6.0,Dimitris,40.6311,22.947,0,0,0,0,1,0,1,0,0,0
+97,90.0,Old Town View Apartment,4.0,2.0,2.0,1.0,1,0,4.0,31.0,Ηρώ,40.63952,22.95855,0,0,0,0,0,0,0,1,1,1
+98,105.0,Alegra#1_The historic center_,4.0,2.0,2.0,1.0,1,1,4.0,124.0,Maximos,40.6369,22.9412,1,1,0,0,0,0,0,1,0,0
+99,240.0,The Lux2 a gorgeous 3 bd apt | Close to everything,6.0,3.0,3.0,2.0,1,1,4.0,77.0,Stef & George,40.63017,22.94477,0,1,1,0,0,0,0,1,0,0
+100,119.0,Urban folks apartment,6.0,3.0,2.0,1.0,1,0,5.0,9.0,Nikos,40.6324,22.9479,0,1,0,0,1,0,0,1,0,0
+101,53.0,✦World Heritage Site✦ Ace Location|Walk Everywhere,3.0,2.0,1.0,1.0,1,1,4.0,100.0,Panagiota,40.63764,22.94817,1,0,0,0,0,1,0,1,0,0
+102,53.0,Seaside Heights: Awe-Inspiring City Views!,3.0,2.0,1.0,1.0,1,1,5.0,33.0,Yanis,40.6398,22.9478,1,1,0,1,0,0,0,0,0,0
+103,65.0,Incognito #Skgbnb,2.0,1.0,1.0,1.0,1,1,5.0,14.0,Tomas&Cristina! Skgbnb,40.6333,22.9542,1,0,0,0,0,0,0,0,1,0
+104,79.0,Project Leni 239,4.0,2.0,2.0,1.0,1,1,4.0,42.0,Alexandros,40.6385,22.944,1,0,0,1,0,0,0,1,0,0
+105,67.0,Aristotelous Square Luxury Studio,4.0,3.0,,1.0,1,1,4.0,260.0,Vaia,40.63591,22.94492,1,1,0,0,0,0,0,1,0,0
+106,120.0,Luxmini 2bd apt near the sea,4.0,2.0,2.0,1.0,1,1,4.0,32.0,Stef & George,40.6286,22.9467,1,0,0,0,1,0,0,1,0,0
+107,55.0,Urban Loft I,5.0,3.0,1.0,1.0,1,1,4.0,205.0,Eva,40.63693,22.9555,0,1,0,1,0,0,0,1,0,0
+108,98.0,Central Luxury apartment + view,4.0,2.0,2.0,1.0,0,1,,,Apostolos,40.6411,22.9308,1,1,0,0,0,0,0,1,0,0
+109,80.0,Euphoria,4.0,2.0,1.0,1.0,1,1,4.0,64.0,Ιωαννης,40.6287,22.9478,1,1,0,0,0,0,0,1,0,0
+110,37.0,"V18 Boutique Rooms, Nilie Hospitality MGMT",2.0,1.0,1.0,1.0,0,0,,1.0,Nilie Premium Hospitality MGMT,40.6431641,22.9341033,0,0,0,0,0,0,0,1,0,0
+111,85.0,Couple-in magical suite with jacuzzi,2.0,1.0,1.0,1.0,1,0,4.0,10.0,ענבר,40.6333867,22.942357,0,0,0,0,1,0,0,1,1,0
+112,64.0,Mythos #2 apartment (Kalliston),4.0,2.0,1.0,1.0,1,1,4.0,60.0,Kalliston,40.63833,22.94335,1,1,0,0,0,0,0,1,0,0
+113,65.0,Incognito #Skgbnb,2.0,1.0,1.0,1.0,1,1,5.0,14.0,Tomas&Cristina! Skgbnb,40.6333,22.9542,1,0,0,0,0,0,0,0,1,0
+114,127.0,"Okto Penthouse, Nilie Hospitality MGMT",4.0,1.0,1.0,1.0,0,0,4.0,19.0,Nilie Premium Hospitality MGMT,40.63581,22.93998,0,1,0,0,1,0,0,1,0,0
+115,53.0,Seaside Heights: Awe-Inspiring City Views!,3.0,2.0,1.0,1.0,1,1,5.0,33.0,Yanis,40.6398,22.9478,1,1,0,1,0,0,0,0,0,0
+116,53.0,✦World Heritage Site✦ Ace Location|Walk Everywhere,3.0,2.0,1.0,1.0,1,1,4.0,100.0,Panagiota,40.63764,22.94817,1,0,0,0,0,1,0,1,0,0
+117,104.0,#Toucan by halu! apartments,4.0,2.0,2.0,1.0,0,0,4.0,21.0,Halu!,40.635234,22.948369,0,1,0,0,0,0,0,1,0,1
+118,79.0,Project Leni 239,4.0,2.0,2.0,1.0,1,1,4.0,42.0,Alexandros,40.6385,22.944,1,0,0,1,0,0,0,1,0,0
+119,88.0,Stylish & Comfortable  In The Heart Of The City,3.0,1.0,1.0,1.0,1,1,5.0,35.0,Andreas,40.63237,22.9486,0,1,0,0,0,0,0,1,0,1
+120,77.0,Neoclassical Flat since 1929 in Thessaloniki,5.0,2.0,2.0,1.0,1,0,4.0,69.0,Elena,40.6365,22.9479,0,1,0,0,1,0,0,0,1,0
+121,120.0,Luxmini 2bd apt near the sea,4.0,2.0,2.0,1.0,1,1,4.0,32.0,Stef & George,40.6286,22.9467,1,0,0,0,1,0,0,1,0,0
+122,240.0,The Lux2 a gorgeous 3 bd apt | Close to everything,6.0,3.0,3.0,2.0,1,1,4.0,77.0,Stef & George,40.63017,22.94477,0,1,1,0,0,0,0,1,0,0
+123,67.0,Aristotelous Square Luxury Studio,4.0,3.0,,1.0,1,1,4.0,260.0,Vaia,40.63591,22.94492,1,1,0,0,0,0,0,1,0,0
+124,73.0,City Center Getaway,4.0,2.0,1.0,1.0,1,1,5.0,14.0,Theodotie,40.6319,22.9463,1,0,0,0,0,1,0,0,1,0
+125,119.0,Urban folks apartment,6.0,3.0,2.0,1.0,1,0,5.0,9.0,Nikos,40.6324,22.9479,0,1,0,0,1,0,0,1,0,0
+126,104.0,#Toucan by halu! apartments,4.0,2.0,2.0,1.0,0,0,4.0,21.0,Halu!,40.635234,22.948369,0,1,0,0,0,0,0,1,0,1
+127,79.0,Project Leni 239,4.0,2.0,2.0,1.0,1,1,4.0,42.0,Alexandros,40.6385,22.944,1,0,0,1,0,0,0,1,0,0
+128,77.0,Neoclassical Flat since 1929 in Thessaloniki,5.0,2.0,2.0,1.0,1,0,4.0,69.0,Elena,40.6365,22.9479,0,1,0,0,1,0,0,0,1,0
+129,120.0,Luxmini 2bd apt near the sea,4.0,2.0,2.0,1.0,1,1,4.0,32.0,Stef & George,40.6286,22.9467,1,0,0,0,1,0,0,1,0,0
+130,67.0,Aristotelous Square Luxury Studio,4.0,3.0,,1.0,1,1,4.0,260.0,Vaia,40.63591,22.94492,1,1,0,0,0,0,0,1,0,0
+131,73.0,City Center Getaway,4.0,2.0,1.0,1.0,1,1,5.0,14.0,Theodotie,40.6319,22.9463,1,0,0,0,0,1,0,0,1,0
+132,82.0,Moroccan vibes,4.0,1.0,1.0,1.0,0,0,5.0,4.0,GeorGina,40.642853,22.9385796,0,0,0,0,1,1,0,0,1,0
+133,70.0,"The Modern World Apartment, Vesta Philoxenia",3.0,2.0,1.0,1.0,1,0,4.0,22.0,Vesta Philoxenia,40.63474,22.95434,0,0,0,1,1,0,0,1,0,0
+134,70.0,Imperium II - White Tower #Skgbnb,2.0,1.0,1.0,1.0,1,1,4.0,45.0,Tomas&Cristina! Skgbnb,40.62818,22.9482,1,0,0,0,0,0,0,1,0,1
+135,45.0,TerraCity Apartment,4.0,2.0,1.0,1.0,1,1,4.0,28.0,Alexandra-Markos,40.6344095,22.9528624,1,1,0,0,0,0,0,1,0,0
+136,89.0,Apartment in listed building in historical centre,4.0,2.0,2.0,2.0,1,1,4.0,126.0,Dimitris-Ioanna,40.6315,22.947,1,1,0,0,0,0,0,1,0,0
+137,240.0,The Lux2 a gorgeous 3 bd apt | Close to everything,6.0,3.0,3.0,2.0,1,1,4.0,77.0,Stef & George,40.63017,22.94477,0,1,1,0,0,0,0,1,0,0
+138,54.0,Thessaloniki Central Apartment,4.0,2.0,1.0,1.0,1,0,5.0,7.0,Anna,40.6390442,22.9356819,0,1,0,0,0,0,1,0,1,0
+139,73.0,STS EIGHT 5.1 NEW,4.0,2.0,1.0,1.0,0,1,4.0,231.0,Έλενα,40.6379,22.9436,0,1,0,0,0,0,0,1,0,1
+140,119.0,Urban folks apartment,6.0,3.0,2.0,1.0,1,0,5.0,9.0,Nikos,40.6324,22.9479,0,1,0,0,1,0,0,1,0,0
+141,42.0,Contemporary Gem in the Heart of Thessaloniki,4.0,2.0,1.0,1.0,0,1,,1.0,Innovation,40.6469,22.9234,1,1,0,0,0,0,0,1,0,0
+142,179.0,Art Gallery Center Apartment,4.0,2.0,2.0,1.0,0,1,4.0,105.0,Alexandros,40.62761,22.94842,1,1,0,1,0,0,0,0,0,0
+143,70.0,Jolie for 4 #Skgbnb,4.0,2.0,2.0,1.0,1,1,4.0,25.0,Cristina&Tomas! Skgbnb,40.62086,22.95822,1,0,1,0,0,0,0,0,0,0
+144,60.0,Thanos  home (with private parking).,3.0,1.0,1.0,1.0,1,1,4.0,299.0,Thanasis,40.6194,22.9554,0,1,1,0,0,0,0,1,0,0
+145,120.0,Apartment in the historical center with beautiful terrace,6.0,3.0,2.0,1.0,1,0,4.0,49.0,Anestis,40.63426,22.94393,0,1,0,0,0,0,1,0,1,0
+146,42.0,Contemporary Gem in the Heart of Thessaloniki,4.0,2.0,1.0,1.0,0,1,,1.0,Innovation,40.6469,22.9234,1,1,0,0,0,0,0,1,0,0
+147,240.0,The Lux2 a gorgeous 3 bd apt | Close to everything,6.0,3.0,3.0,2.0,1,1,4.0,77.0,Stef & George,40.63017,22.94477,0,1,1,0,0,0,0,1,0,0
+148,108.0,Green Doors Penthouse,4.0,2.0,2.0,1.0,1,1,4.0,16.0,Magda,40.6316,22.9475,1,0,0,0,1,0,0,1,0,0
+149,45.0,Modern Aristotelous Studio with a Magic Balcony,2.0,1.0,1.0,1.0,1,0,4.0,376.0,Vasilis,40.63413,22.94183,0,1,0,0,0,0,0,1,1,0
+150,56.0,Casa Nueve - Amazing apartment close to the sea,4.0,2.0,1.0,1.0,1,1,4.0,157.0,Chris,40.607,22.953,1,0,0,0,0,0,0,1,1,0
+151,55.0,Ohappy Design Penthouse,3.0,1.0,1.0,1.0,0,0,4.0,9.0,Ioannis,40.63993,22.94031,0,1,0,0,0,0,0,0,0,0
+152,142.0,Fandango: Gorgeous Neoclassical Apartment,4.0,3.0,2.0,1.0,1,0,5.0,20.0,Halu!,40.63668,22.94203,0,1,0,0,1,0,0,0,0,1
+153,47.0,Luxurious get-away chez Kat,4.0,2.0,1.0,1.0,1,1,5.0,8.0,Thanos,40.6405,22.9325,1,0,0,0,0,0,0,0,1,0
+154,60.0,Ventura - Radio city #Skgbnb,4.0,2.0,2.0,2.0,1,1,5.0,20.0,Cristina&Tomas! Skgbnb,40.61613,22.95701,1,0,0,0,0,0,0,0,1,0
+155,47.0,LuxLiving Agiou Dimitriou II,2.0,1.0,1.0,1.0,1,1,5.0,14.0,Alexandros,40.6389227,22.9476825,0,1,0,1,0,0,0,1,0,0
+156,69.0,Adam's apartment with large sunny balcony,4.0,2.0,2.0,1.0,0,1,5.0,3.0,Yorgos,40.62967,22.95211,1,0,0,1,0,0,0,1,0,0
+157,57.0,Cozy Modern Apartment Inside The City Center,3.0,1.0,1.0,1.0,1,1,4.0,203.0,Lucia And Konstantinos,40.6328,22.949,1,1,1,0,0,0,0,0,0,0
+158,55.0,Flat 128 ★ Sea view ★ 5min walk to Roman Forum,4.0,2.0,1.0,1.0,0,1,4.0,62.0,Silvia,40.641,22.9454,1,1,0,0,0,0,0,1,0,0
+159,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+160,66.0,NEW #5 DESIGN LUXURY,2.0,1.0,1.0,1.0,0,0,5.0,6.0,Phi,40.64039,22.94192,0,1,0,1,0,0,0,1,0,0
+161,82.0,Iktinou Luxury City Center Apartment,6.0,3.0,2.0,1.0,1,1,4.0,222.0,Christos,40.6313,22.9456,1,1,0,0,0,0,0,1,0,0
+162,41.0,Tailor's suites  #2,4.0,,1.0,1.0,1,1,4.0,28.0,Maria,40.6397,22.9387,1,0,0,1,0,0,0,1,0,0
+163,82.0,Iktinou Luxury City Center Apartment,6.0,3.0,2.0,1.0,1,1,4.0,222.0,Christos,40.6313,22.9456,1,1,0,0,0,0,0,1,0,0
+164,74.0,Seaside Pearl Apartment (Two bedrooms),4.0,3.0,2.0,1.0,0,1,5.0,3.0,Artemis,40.6206,22.9527,1,0,0,1,0,0,0,1,0,0
+165,56.0,Helens Little Castle  (Free Private Parking),2.0,1.0,1.0,1.0,1,1,5.0,56.0,Efstathios,40.63741,22.95506,1,1,0,1,0,0,0,0,0,0
+166,115.0,White Lotus by halu! : 2BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,11.0,Halu!,40.6354,22.94715,0,1,0,0,0,0,0,0,1,1
+167,42.0,"Big Apple #2.6, Nilie Hospitality MGMT",3.0,1.0,1.0,1.0,0,0,4.0,15.0,Nilie Premium Hospitality MGMT,40.64028,22.93825,0,0,0,0,0,0,0,1,0,0
+168,55.0,Flat 129 ★ Sea view ★ 5min walk to Roman Forum,4.0,2.0,1.0,1.0,1,1,4.0,86.0,Silvia,40.6409,22.9454,1,1,0,0,0,0,0,1,0,0
+169,64.0,City Chic: Cozy Balcony Bliss,3.0,2.0,1.0,1.0,0,0,5.0,4.0,Apostolos,40.6358207,22.9530425,0,0,0,0,1,0,0,1,1,0
+170,65.0,Sunny & Happy aprt historic center,4.0,2.0,2.0,1.0,1,1,4.0,113.0,Marianna,40.632,22.9529,1,1,0,0,0,0,0,0,1,0
+171,128.0,#Luxlikehome Horizon Apartment,6.0,3.0,3.0,2.0,0,0,,,Luxlikehome,40.60326,22.95303,0,1,0,0,0,0,0,0,0,0
+172,74.0,Vibrant city apartment,4.0,2.0,2.0,1.0,1,1,4.0,78.0,Filippa,40.63077,22.94271,0,1,0,1,0,0,0,1,0,0
+173,62.0,Twin° Superior Suites,3.0,2.0,1.0,1.0,1,1,4.0,127.0,Panagiota,40.6197,22.9578,0,1,0,0,0,0,0,1,0,1
+174,144.0,Luxury home@the heart of the city,4.0,3.0,2.0,1.0,0,0,5.0,17.0,Dimitra,40.62901,22.94722,0,1,0,0,0,0,0,0,0,0
+175,65.0,Sofia Sunshine Serenity,6.0,2.0,2.0,1.0,0,0,,,Konstantinos,40.6317279,22.9493214,0,0,0,0,0,1,0,0,0,0
+176,52.0,THE WALL Downtown Apartment/museums area,3.0,1.0,1.0,1.0,0,1,4.0,260.0,Giorgos,40.6308,22.9515,0,1,0,0,0,0,0,0,0,0
+177,40.0,UTOPIA Flat can host up to 8ppl with UTOPIA Studio,4.0,2.0,1.0,1.0,1,1,4.0,91.0,Konstantinos,40.64423,22.93777,1,1,0,0,0,0,0,1,0,0
+178,52.0,Luxury apartments in Thessaloniki,3.0,1.0,1.0,1.0,1,0,4.0,14.0,Ευαγγελία,40.6415014,22.9482505,0,1,1,0,0,0,0,1,0,0
+179,75.0,Thea Apartment,4.0,2.0,2.0,1.0,1,1,4.0,47.0,Anestis,40.63977,22.95594,1,1,0,0,0,0,0,0,1,0
+180,52.0,Luxury apartments in Thessaloniki,3.0,1.0,1.0,1.0,1,0,4.0,14.0,Ευαγγελία,40.6415014,22.9482505,0,1,1,0,0,0,0,1,0,0
+181,60.0,Penthouse in the City Centre !!,3.0,1.0,1.0,1.0,0,0,4.0,69.0,Elina,40.63547,22.93888,0,1,0,0,0,0,0,1,1,0
+182,49.0,Aristotelous Loft Apartment,4.0,1.0,1.0,1.0,1,1,4.0,133.0,Nikoleta,40.63821,22.94794,0,1,0,1,0,0,0,1,0,0
+183,70.0,City center Diamond suite - 300m from the seafront,3.0,,,1.0,1,0,5.0,6.0,Βασίλης,40.6353,22.9406,0,1,0,0,1,0,0,1,0,0
+184,51.0,Spacious Luxury apartment downtown Thessaloniki,4.0,2.0,1.0,1.0,0,1,4.0,78.0,My Street,40.64007,22.93705,1,0,0,0,0,0,0,0,1,0
+185,81.0,Urban Luxury by InFox Suites,6.0,2.0,2.0,1.0,1,0,5.0,11.0,InFox Suites,40.6392814,22.9501976,0,0,0,0,0,0,1,1,1,0
+186,90.0,"White Suite ""Armonia""",8.0,3.0,3.0,2.0,1,1,4.0,87.0,Δημήτρης -,40.61719,22.95904,1,0,0,0,0,0,0,0,0,0
+187,164.0,Dahlia: Elegant & Spacious 2-Bedroom Luxury Living,4.0,2.0,2.0,2.0,0,0,4.0,5.0,Halu!,40.63188,22.94953,0,1,0,1,0,0,0,1,0,0
+188,90.0,Spacious city loft near the waterfront,4.0,2.0,2.0,1.0,1,1,4.0,203.0,Kostis,40.6337,22.9389,1,1,0,1,0,0,0,0,0,0
+189,49.0,"Adelle Studio #34, The Luxury Suites",3.0,2.0,,1.0,0,0,4.0,41.0,The Luxury Suites,40.63965,22.93941,0,1,0,0,0,0,0,1,0,0
+190,160.0,Elegant Beachfront 3bd House,6.0,4.0,3.0,2.0,1,0,5.0,11.0,Solon,40.5007087,22.892568,0,1,0,1,0,0,0,0,1,0
+191,95.0,View and the city,4.0,2.0,2.0,1.0,1,1,4.0,38.0,Panagiotis,40.64031,22.96039,1,1,0,0,1,0,0,0,0,0
+192,57.0,Great View Luxury Living,3.0,2.0,,1.0,1,1,4.0,196.0,Stamatis,40.6442,22.925,0,1,0,1,0,0,0,1,0,0
+193,120.0,Big Suite by the Sea,4.0,1.0,1.0,1.0,1,1,5.0,37.0,Konstantinos,40.5064,22.91707,1,0,0,0,1,0,0,0,1,0
+194,112.0,"#FLH - Scandi Chic Apartment, Agia Sofia District",4.0,2.0,2.0,1.0,0,1,4.0,274.0,FeelsLikeHomeGR,40.6338,22.9455,1,1,0,0,1,0,0,0,0,0
+195,36.0,Escape ... in style // Downtown Seaside Gate_301,2.0,1.0,1.0,1.0,0,1,4.0,340.0,Mike,40.63145,22.94071,0,1,1,0,0,0,0,1,0,0
+196,70.0,Ano Poli stay with private terrace and view,4.0,3.0,1.0,1.0,0,0,4.0,45.0,Vesta Philoxenia,40.64298,22.95404,0,1,0,0,1,0,0,0,1,0
+197,79.0,Lux Nomad MGMT - BOEM super central 2bedroom flat,5.0,3.0,2.0,1.0,1,1,4.0,54.0,Alexios,40.6371,22.9466,1,1,0,0,0,0,0,1,0,0
+198,46.0,ifestos By Socrates Junior Houses,3.0,1.0,1.0,1.0,0,1,,,Socrates Junior Houses,40.6431227,22.939386,1,1,0,0,0,0,0,1,0,0
+199,208.0,Marilyn: Luxe & Stylish 3BD retreat by halu!,6.0,4.0,3.0,2.0,1,0,4.0,13.0,Halu!,40.6345715,22.9465505,0,1,0,1,0,0,0,1,0,0
+200,126.0,Agia Sofia Noir Apartment,4.0,2.0,2.0,1.0,1,1,4.0,15.0,Dimitra,40.6324,22.9446,1,1,0,0,0,0,0,1,0,0
+201,52.0,Lovely modern apartment of 1.3km from White Tower,4.0,2.0,1.0,1.0,1,0,5.0,17.0,Vasiliki,40.6192,22.9579,0,1,0,0,0,0,0,1,1,0
+202,68.0,Horizon /Downtown Penthouse w/ massive terrace,4.0,2.0,,1.0,1,1,5.0,23.0,Afentoula,40.63275,22.94854,1,1,0,0,0,0,0,0,0,1
+203,61.0,Terpsi's house,2.0,2.0,1.0,1.0,1,1,4.0,55.0,Giorgos,40.63058,22.94894,1,1,0,0,0,0,0,1,0,0
+204,44.0,"Pantheon, Nilie Hospitality MGMT",4.0,1.0,1.0,1.0,0,0,4.0,9.0,Nilie Premium Hospitality MGMT,40.6341411,22.9371348,0,0,0,0,0,0,0,1,0,0
+205,80.0,Urban Seaside Studio with BALCONY,3.0,1.0,1.0,1.0,1,1,4.0,167.0,Elina,40.63098,22.94265,1,1,0,0,0,0,0,1,0,0
+206,77.0,Stylish and Renovated Retreat,3.0,2.0,1.0,1.0,1,0,5.0,10.0,Mike,40.6378,22.9531,0,0,0,0,0,1,1,0,1,0
+207,153.0,4 Travelers,4.0,3.0,2.0,1.0,1,1,5.0,50.0,Crisa,40.6339,22.9426,1,1,0,1,0,0,0,0,0,0
+208,131.0,Pelagus City - Grand View Suite,4.0,1.0,1.0,1.0,0,0,,,Pelagus City,40.635,22.9388,0,0,0,0,0,0,0,1,0,0
+209,45.0,Feel like your home in the Helion apartment,4.0,2.0,1.0,1.0,0,1,4.0,78.0,Αστεριος,40.64081,22.93721,1,1,0,0,0,0,0,1,0,0
+210,70.0,Agia Sofia Luxury City Center Apartment,4.0,2.0,2.0,1.0,0,1,4.0,102.0,Eleftheria,40.6322,22.9477,1,0,0,1,0,0,0,1,0,0
+211,40.0,Private Mini Suite-Self Check-in,2.0,1.0,1.0,1.0,0,0,,2.0,Nikos,40.6371,22.9368,0,1,0,0,0,0,0,1,0,0
+212,60.0,Elegant Mountain-view Apartment next to seaside,4.0,2.0,1.0,1.0,0,1,4.0,25.0,Innovation,40.60491,22.95141,1,1,0,0,0,0,0,1,0,0
+213,62.0,Bright Bright A_Central Apartment with balcony,4.0,3.0,2.0,1.0,1,1,4.0,160.0,Mary,40.63711,22.94261,1,1,0,0,0,0,0,1,0,0
+214,55.0,Valentina's Apartment with Large Sunny Balcony,2.0,1.0,1.0,1.0,1,1,4.0,244.0,Yorgos,40.6349,22.9465,0,1,0,1,0,0,0,1,0,0
+215,67.0,#Pearl: Penthouse suite with amazing view,2.0,1.0,,1.0,0,0,4.0,19.0,Halu!,40.63415,22.94527,0,1,0,1,0,0,0,1,0,0
+216,60.0,#SKGH Anatolia Luxury Suite -NearHELEXPO,4.0,2.0,1.0,1.0,0,0,4.0,74.0,Helias,40.6275,22.9524,0,1,0,1,0,0,0,1,0,0
+217,66.0,Navarinou sq.-ancient ruins view-lux 2BD apartment,5.0,2.0,2.0,1.0,0,1,4.0,287.0,Ioanna,40.6306,22.9479,1,1,0,1,0,0,0,0,0,0
+218,64.0,"Bonsai 4.1, The Luxury Suites",4.0,1.0,1.0,1.0,0,0,,1.0,The Luxury Suites,40.6391422,22.93775,0,1,0,0,0,0,0,1,0,0
+219,38.0,Escape ... in style // Downtown Seaside Gate_303,2.0,1.0,1.0,1.0,0,1,4.0,269.0,Mike,40.6318,22.9417,0,1,1,0,0,0,0,1,0,0
+220,80.0,"1 Sea & City 
+Living",4.0,2.0,1.0,1.0,1,1,4.0,88.0,Κατερίνα,40.61087,22.9526,1,1,0,0,0,0,0,1,0,0
+221,95.0,The SuperHeroes Apartment,4.0,2.0,2.0,1.0,1,1,4.0,70.0,Vassilis,40.5994,22.9757,1,0,0,0,0,0,0,0,1,1
+222,115.0,kids friendly apartment,4.0,2.0,2.0,1.0,1,0,5.0,7.0,Sofi,40.59581,22.95607,0,1,0,1,0,0,0,1,0,0
+223,49.0,Harmony studio with terrace.,3.0,,1.0,1.0,0,1,5.0,4.0,Nikolaos,40.631166,22.9442399,1,0,0,0,1,0,0,1,0,0
+224,79.0,Horizon View Kalamaria,4.0,2.0,1.0,1.0,1,1,5.0,9.0,Matoula,40.5787,22.9454,1,0,0,0,0,0,0,1,0,1
+225,88.0,Heaven on the 7th (Aparment A),5.0,2.0,2.0,1.0,0,0,5.0,4.0,Panos,40.620769,22.952883,0,1,0,0,1,0,0,1,0,0
+226,57.0,Penthouse Apartment 1# MODERN penthouse APARTMENT,4.0,2.0,1.0,1.0,0,1,4.0,23.0,Παναγιωτης,40.603,22.9689,1,1,0,0,0,0,0,1,0,0
+227,46.0,ifestos By Socrates Junior Houses,3.0,1.0,1.0,1.0,0,1,,,Socrates Junior Houses,40.6431227,22.939386,1,1,0,0,0,0,0,1,0,0
+228,50.0,Urban Loft II,3.0,2.0,1.0,1.0,1,1,4.0,154.0,Γιώργος,40.63675,22.95583,1,0,0,1,0,0,0,1,0,0
+229,35.0,Escape ... in style // Downtown Seaside Gate_306,2.0,1.0,1.0,1.0,0,1,4.0,353.0,Mike,40.6318,22.9417,0,1,0,0,0,0,0,1,0,1
+230,92.0,#Sunshine: City centre family retreat,4.0,3.0,2.0,1.0,0,0,5.0,5.0,Halu!,40.63515,22.94939,0,1,0,1,0,0,0,1,0,0
+231,94.0,FeliCity:Accessible/Comfortable Loft_Thessaloniki,6.0,3.0,1.0,1.0,0,1,5.0,19.0,Despina,40.6387,22.9372,1,0,0,1,0,0,0,1,0,0
+232,49.0,"Adelle Studio #31, The Luxury Suites",3.0,2.0,,1.0,0,0,4.0,43.0,The Luxury Suites,40.63775,22.93937,0,1,0,0,0,0,0,1,0,0
+233,77.0,Soul - the vibe of the city,2.0,1.0,1.0,1.0,1,1,4.0,36.0,Manos,40.6318,22.9463,0,1,0,1,0,0,0,1,0,0
+234,43.0,Modern apartment.,4.0,2.0,1.0,1.0,1,1,5.0,38.0,Κωνσταντίνος,40.61469,22.98336,1,1,1,0,0,0,0,0,0,0
+235,126.0,#URBN - City Pulse Apartment,5.0,2.0,2.0,1.0,1,1,5.0,5.0,Asset,40.6288,22.9496,1,1,0,0,1,0,0,0,0,0
+236,59.0,Unique Skyview Penthouse - Downtown,4.0,2.0,1.0,1.0,1,1,4.0,157.0,Erik,40.63384,22.94883,1,1,0,0,0,0,0,1,0,0
+237,38.0,Escape ... in style // Downtown Seaside Gate_303,2.0,1.0,1.0,1.0,0,1,4.0,269.0,Mike,40.6318,22.9417,0,1,1,0,0,0,0,1,0,0
+238,52.0,Magenta Ruby #FREE Parking#,3.0,,1.0,1.0,1,0,5.0,8.0,Foteini,40.6406934,22.9478825,0,1,0,0,1,0,0,1,0,0
+239,65.0,Just by the White Tower,6.0,3.0,1.0,1.0,1,1,4.0,166.0,Artemis,40.6296,22.9502,1,1,0,0,0,0,0,1,0,0
+240,144.0,Luxury Downtown Apartment C2,5.0,3.0,2.0,1.0,1,1,5.0,58.0,Kinfeel North,40.6334,22.9443,0,1,0,0,0,0,0,1,0,1
+241,63.0,Cloud9-skg,2.0,1.0,1.0,1.0,1,0,5.0,6.0,Savvas,40.6353,22.9353,0,1,0,0,1,0,0,1,0,0
+242,69.0,"Deluxe Apartment Pylaia, SKG",5.0,3.0,2.0,1.0,1,1,4.0,23.0,Ioannis,40.6109,22.9841,1,0,0,0,0,0,0,1,0,1
+243,40.0,Thanos Luxurious Apartment,3.0,2.0,1.0,1.0,1,1,5.0,14.0,Thanos,40.61918,22.95905,1,0,0,0,1,0,0,1,0,0
+244,82.0,'' D 'Esperey Urban Stay' ',4.0,2.0,2.0,1.0,0,0,,2.0,Monica,40.6285,22.9525,0,1,1,0,0,0,0,0,0,0
+245,190.0,AiR Waterfront Nikis Apartment,8.0,5.0,3.0,1.0,1,1,4.0,190.0,Architecture In Residence,40.6301,22.9436,1,1,0,1,0,0,0,0,0,0
+246,49.0,Harmony studio with terrace.,3.0,,1.0,1.0,0,1,5.0,4.0,Nikolaos,40.631166,22.9442399,1,0,0,0,1,0,0,1,0,0
+247,80.0,Innovative 2-BR futuristic flat in Ladadika,4.0,2.0,2.0,1.0,1,1,4.0,48.0,Innovation,40.63617,22.93799,1,1,0,0,0,0,0,1,0,0
+248,46.0,ifestos By Socrates Junior Houses,3.0,1.0,1.0,1.0,0,1,,,Socrates Junior Houses,40.6431227,22.939386,1,1,0,0,0,0,0,1,0,0
+249,48.0,Top Floor Luxury Apartment with Beautiful Balcony,4.0,2.0,1.0,1.0,0,0,4.0,166.0,Vasilis,40.63621,22.93697,0,1,0,1,0,0,0,1,0,0
+250,70.0,"Modern,Luxury Grey Suite",6.0,2.0,2.0,1.0,1,1,4.0,103.0,Δημήτρης -,40.61527,22.9585,1,1,0,0,0,0,0,1,0,0
+251,70.0,beautiful house,4.0,1.0,1.0,1.0,1,1,4.0,29.0,Lumin,40.60093,22.95292,1,1,1,0,0,0,0,0,0,0
+252,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+253,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+254,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+255,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+256,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+257,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+258,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+259,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+260,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+261,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+262,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+263,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+264,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+265,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+266,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+267,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+268,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+269,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+270,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+271,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+272,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+273,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+274,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+275,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+276,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+277,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+278,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+279,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+280,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+281,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+282,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+283,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+284,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+285,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+286,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+287,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+288,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+289,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+290,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+291,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+292,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+293,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+294,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+295,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+296,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+297,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+298,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+299,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+300,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+301,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+302,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+303,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+304,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+305,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+306,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+307,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+308,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+309,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+310,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+311,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+312,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+313,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+314,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+315,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+316,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+317,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+318,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+319,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+320,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+321,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+322,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+323,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+324,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+325,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+326,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+327,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+328,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+329,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+330,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+331,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+332,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+333,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+334,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+335,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+336,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+337,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+338,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+339,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+340,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+341,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+342,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+343,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+344,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+345,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+346,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+347,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+348,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+349,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+350,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+351,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+352,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+353,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+354,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+355,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+356,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+357,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+358,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+359,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+360,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+361,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+362,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+363,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+364,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+365,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+366,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+367,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+368,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+369,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+370,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+371,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+372,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+373,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+374,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+375,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+376,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+377,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+378,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+379,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+380,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+381,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+382,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+383,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+384,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+385,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+386,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+387,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+388,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+389,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+390,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+391,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+392,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+393,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+394,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+395,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+396,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+397,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+398,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+399,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+400,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+401,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+402,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+403,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+404,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+405,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+406,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+407,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+408,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+409,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+410,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+411,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+412,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+413,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+414,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+415,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+416,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+417,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+418,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+419,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+420,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+421,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+422,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+423,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+424,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+425,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+426,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+427,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+428,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+429,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+430,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+431,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+432,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+433,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+434,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+435,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+436,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+437,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+438,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+439,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+440,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+441,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+442,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+443,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+444,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+445,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+446,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+447,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+448,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+449,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+450,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+451,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+452,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+453,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+454,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+455,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+456,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+457,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+458,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+459,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+460,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+461,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+462,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+463,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+464,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+465,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+466,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+467,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+468,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+469,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+470,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+471,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+472,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+473,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+474,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+475,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+476,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+477,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+478,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+479,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+480,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+481,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+482,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+483,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+484,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+485,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+486,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+487,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+488,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+489,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+490,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+491,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+492,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+493,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+494,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+495,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+496,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+497,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+498,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+499,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+500,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+501,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+502,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+503,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
+504,55.0,Modern cozy apartment in the heart of Thessaloniki,3.0,2.0,1.0,1.0,1,1,4.0,174.0,Σάκης,40.63174,22.94711,1,1,0,0,0,0,0,1,0,0
+505,51.0,#ATS - Theodor Cozy Apartment,4.0,1.0,1.0,1.0,0,0,4.0,32.0,Around,40.6328258,22.9439552,0,1,0,0,1,0,0,1,0,0
+506,68.0,Stylish central apartment!,6.0,2.0,2.0,1.0,1,1,5.0,5.0,City Apartments,40.642138,22.9433399,1,0,0,1,0,0,0,0,1,0
+507,31.0,White Diamond,2.0,1.0,1.0,1.0,0,0,4.0,10.0,Zoe,40.6417,22.944,0,0,0,0,0,0,0,1,1,0
+508,85.0,Modern Studio in Downtown.,3.0,,1.0,1.0,1,0,5.0,8.0,Natalia,40.6308,22.9477,0,1,0,0,1,0,0,1,0,0
+509,115.0,Penthouse-heart of Thessaloniki,5.0,4.0,2.0,1.0,1,1,4.0,80.0,Alex,40.6304,22.94664,1,1,0,0,1,0,0,0,0,0
+510,65.0,Sweet apartment!!!,4.0,1.0,1.0,1.0,1,1,4.0,429.0,Giorgos,40.63875,22.94964,1,1,0,0,0,0,0,1,0,0
+511,32.0,Spotted in Thessaloniki #10!-parking 15€/24h,2.0,1.0,,1.0,1,1,4.0,16.0,Giannis,40.6374,22.9357,1,1,0,0,0,0,0,1,0,0
+512,115.0,Blossom by halu! Cozy 2-BD apartment,4.0,2.0,2.0,1.0,0,0,5.0,3.0,Halu!,40.6328286,22.9426356,0,1,0,0,1,0,0,1,0,0
+513,97.0,#Tiramisu by halu! Apartments,4.0,2.0,2.0,1.0,0,0,4.0,20.0,Halu!,40.63319,22.94279,0,1,0,1,1,0,0,0,0,0
+514,48.0,Two bedroom apartment in the city center,6.0,3.0,2.0,1.0,1,1,5.0,14.0,Daniel,40.6436,22.9397,1,0,0,1,0,0,0,1,0,0
+515,69.0,#Heart and Soul by halu! Apartments (Heart),2.0,2.0,1.0,1.0,0,0,4.0,5.0,Halu!,40.62854,22.95185,0,1,0,1,0,0,0,1,0,0
+516,56.0,Stunning room-CityCenter-Getaway,2.0,1.0,1.0,1.0,1,0,4.0,21.0,Marabou Unique Stay,40.6386,22.9378,0,1,0,0,0,0,0,0,1,0
+517,46.0,Nostalgia,2.0,1.0,1.0,1.0,1,1,4.0,105.0,Ntemi And Nick,40.6409,22.943,1,1,0,0,0,0,0,1,0,0
+518,120.0,Lovely-3-bedrooms apartment center of Thessaloniki,5.0,3.0,3.0,1.0,1,1,4.0,46.0,Nana,40.63549,22.95058,0,1,0,1,0,0,0,1,0,0
+519,47.0,360° City Center Loft with Parking,2.0,1.0,1.0,1.0,1,1,4.0,273.0,Sarantos,40.6173,22.958,0,1,0,0,0,0,0,1,0,1
+520,54.0,Cozy Apartment in City  Center!!!!,4.0,2.0,2.0,1.0,0,1,4.0,104.0,Elena,40.63898,22.94602,1,0,0,1,0,0,0,1,0,0
+521,95.0,Seaside Paradise Perea Apartment,4.0,2.0,1.0,1.0,1,1,5.0,12.0,Maria,40.5083,22.9221,1,0,0,0,1,0,0,0,1,0
