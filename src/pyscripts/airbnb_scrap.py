@@ -14,37 +14,8 @@ import sys
 import os
 from datetime import datetime
 import re
+import argparse
 
-script_path = os.path.abspath(sys.argv[0])
-print(f"The path of the currently executing script is: {script_path}")
-# Go up three levels
-parent_directory = os.path.dirname(script_path)
-for _ in range(2):
-    parent_directory = os.path.dirname(parent_directory)
-
-# Configure logging
-current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
-logging.basicConfig(filename=parent_directory+f'/logs/scrapapp_{current_time}.log', level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
-
-# Create a handler for writing log messages to the standard output (console)
-console_handler = logging.StreamHandler(sys.stdout)
-console_handler.setLevel(logging.INFO)
-
-# Create a formatter for the console handler
-console_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-
-# Add the formatter to the console handler
-console_handler.setFormatter(console_formatter)
-
-# Add the console handler to the root logger
-logging.getLogger('').addHandler(console_handler)
-
-logging.info(f"Logfile will be saved at path: {parent_directory+f'/logs/scrapapp_{current_time}.log'}")
-logging.info(f"Data will be saved at path: {parent_directory+f"/data/listing_data_{current_time}.csv"}")
-
-TIMEOUT=30
-PAGE_TO_BREAK=30
 COLUMNS = [
     'Price', 'Title', 'Visitors', 'Beds', 'Bedrooms', 'Baths', 
     'Guest Favorite', 'Superhost', 'Review Index', 'Number of reviews', 
@@ -313,9 +284,9 @@ def listing_wrapper(driver, div1, div2):
 
 
 
-def scrape_airbnb_listings():
+def scrape_airbnb_listings(url_to_fetch):
     driver = webdriver.Chrome()
-    base_url = "https://www.airbnb.com/s/Thessaloniki/homes"  # Replace with your target search
+    base_url = url_to_fetch  # Replace with your target search
     driver.get(base_url)
     # Wait five secs to fetch all listings. 
     time.sleep(5)
@@ -390,6 +361,7 @@ def scrape_airbnb_listings():
 
         # Find and click on the "next" button (if it exists)
         try:
+            time.sleep(2)
             next_button = driver.find_element(By.CSS_SELECTOR, '[aria-label="Next"]')
             next_button.click()
             time.sleep(2)  # Small delay to allow page to load
@@ -402,4 +374,57 @@ def scrape_airbnb_listings():
 
     driver.quit()
 
-scrape_airbnb_listings()
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description="This script fetches information from airbnb according to provided urls.")
+    parser.add_argument("-u", "--url", dest="url",
+                        default="https://airbnb.com/s/Ampelokipoi~Menemeni--Greece/homes,https://airbnb.com/s/Evosmos--%CE%98%CE%B5%CF%83%CF%83%CE%B1%CE%BB%CE%BF%CE%BD%CE%AF%CE%BA%CE%B7/homes,https://airbnb.com/s/Stavroupoli--%CE%95%CE%BB%CE%BB%CE%AC%CE%B4%CE%B1/homes",
+                        type=str, help="URLs to fetch comma seperated.")
+    parser.add_argument("-p", "--pages", dest="pages",
+                        default="30", type=int,
+                        help="Pages to fetch until breaking and continuing to next url.")
+    parser.add_argument("-t", "--timeout", dest="timeout",
+                        default="30", type=int,
+                        help="Wait until designated number of seconds to fetch pages before performing timeout.")
+
+    if len(sys.argv) < 1:
+        parser.print_help()
+        sys.exit(1)
+
+    script_path = os.path.abspath(sys.argv[0])
+    print(f"The path of the currently executing script is: {script_path}")
+    # Go up three levels
+    parent_directory = os.path.dirname(script_path)
+    for _ in range(2):
+        parent_directory = os.path.dirname(parent_directory)
+
+    # Configure logging
+    current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
+    logging.basicConfig(filename=parent_directory+f'/logs/scrapapp_{current_time}.log', level=logging.INFO,
+                        format='%(asctime)s - %(levelname)s - %(message)s')
+
+    # Create a handler for writing log messages to the standard output (console)
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setLevel(logging.INFO)
+
+    # Create a formatter for the console handler
+    console_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+
+    # Add the formatter to the console handler
+    console_handler.setFormatter(console_formatter)
+
+    # Add the console handler to the root logger
+    logging.getLogger('').addHandler(console_handler)
+
+    logging.info(f"Logfile will be saved at path: {parent_directory+f'/logs/scrapapp_{current_time}.log'}")
+    logging.info(f"Data will be saved at path: {parent_directory+f"/data/listing_data_{current_time}.csv"}")
+
+    args = parser.parse_args()
+
+    TIMEOUT = args.timeout
+    PAGE_TO_BREAK = args.pages
+
+    urls_list = args.url.split(',')
+
+    for _ , url_to_fetch in enumerate(urls_list):
+        scrape_airbnb_listings(url_to_fetch)
