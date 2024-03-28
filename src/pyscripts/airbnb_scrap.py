@@ -44,7 +44,7 @@ logging.info(f"Logfile will be saved at path: {parent_directory+f'/logs/scrapapp
 logging.info(f"Data will be saved at path: {parent_directory+f"/data/listing_data_{current_time}.csv"}")
 
 TIMEOUT=30
-PAGE_TO_BREAK=18
+PAGE_TO_BREAK=30
 COLUMNS = [
     'Price', 'Title', 'Visitors', 'Beds', 'Bedrooms', 'Baths', 
     'Guest Favorite', 'Superhost', 'Review Index', 'Number of reviews', 
@@ -352,7 +352,7 @@ def scrape_airbnb_listings():
             logging.info("=====================================================================================")
             logging.info(f"Fetching listing {listing_num+1} out of {len(listings)} listings in page {current_page}.")
             try: 
-                listing_url = listing.find('a', class_='atm_uc_glywfm_18zk5v0_pynvjw')['href']  # Adjust if needed 
+                listing_url = listing.find('a', class_='l1ovpqvx atm_1y33qqm_1ggndnn_10saat9 atm_17zvjtw_zk357r_10saat9 atm_w3cb4q_il40rs_10saat9 atm_1cumors_fps5y7_10saat9 atm_52zhnh_1s82m0i_10saat9 atm_jiyzzr_1d07xhn_10saat9 bn2bl2p atm_5j_8todto atm_9s_1ulexfb atm_e2_1osqo2v atm_fq_idpfg4 atm_mk_stnw88 atm_tk_idpfg4 atm_vy_1osqo2v atm_26_1j28jx2 atm_3f_glywfm atm_kd_glywfm atm_3f_glywfm_jo46a5 atm_l8_idpfg4_jo46a5 atm_gi_idpfg4_jo46a5 atm_3f_glywfm_1icshfk atm_kd_glywfm_19774hq atm_uc_x37zl0_1w3cfyq_oggzyc atm_70_thabx4_1w3cfyq_oggzyc atm_uc_glywfm_1w3cfyq_pynvjw atm_uc_x37zl0_pfnrn2_ivgyl9 atm_70_thabx4_pfnrn2_ivgyl9 atm_uc_glywfm_pfnrn2_61fwbc dir dir-ltr')['href']  # Adjust if needed 
             except:
                 logging.error("Increase time wait at initial page fetching.")
                 break
