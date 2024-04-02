@@ -16,6 +16,10 @@ from datetime import datetime
 import re
 import argparse
 
+import osmnx as ox
+from shapely.geometry import Polygon
+from shapely.geometry import Point
+
 COLUMNS = [
     'Price', 'Title', 'Visitors', 'Beds', 'Bedrooms', 'Baths', 
     'Guest Favorite', 'Superhost', 'Review Index', 'Number of reviews', 
@@ -23,6 +27,51 @@ COLUMNS = [
 ]
 
 listing_data_df = pd.DataFrame(columns=COLUMNS)
+
+def is_within_city(row, city_polygon):
+    """
+    Checks if a geographical point lies within a city polygon.
+
+    Args:
+        row (pandas.Series): A row from a DataFrame containing 'Longitude' and 'Latitude' columns.
+        city_polygon (shapely.geometry.Polygon): A Shapely Polygon representing the city boundary.
+
+    Returns:
+        bool: True if the point is within the city polygon, False otherwise.
+    """
+
+    point = Point(row['Longitude'], row['Latitude'])
+    return city_polygon.geometry.contains(point) 
+
+def filter_loc(df, areas):
+    """
+    Filters a DataFrame of geographical points based on containment within a set of city areas. 
+
+    Args:
+        df (pandas.DataFrame): A DataFrame containing 'Longitude' and 'Latitude' columns.
+        areas (list): A list of city names as strings.
+
+    Returns:
+        pandas.DataFrame: A filtered DataFrame containing only points within all specified city areas.
+    """
+
+    union_polygon = None  # Initialize union polygon
+
+    for num, area in enumerate(areas):
+        area_polygon = ox.geocode_to_gdf(area)['geometry']
+
+        if num == 0:
+            union_polygon = area_polygon  
+        else:
+            union_polygon = union_polygon.union(area_polygon) 
+
+    mask_df = df.apply(is_within_city, args=(union_polygon,), axis=1).all(axis=1)
+
+    logging.info(f"Filtered out {(~mask_df).sum()} rows from dataframe, due to out of border coordinates...")
+
+    df_filtered = df[mask_df]
+
+    return df_filtered
 
 # Helper function to extract numbers from text
 def extract_number(text):
@@ -84,6 +133,13 @@ def post_proc(df):
     # Drop the original 'Characteristics' column
     df.drop('Characteristics', axis=1, inplace=True)
 
+    logging.info(f'Number of duplicate entries in dataframe : {len(df) - len(df.drop_duplicates())}')
+
+    df.drop_duplicates(inplace=True)
+
+    # Filter according to coordinates
+    df = filter_loc(df, AREAS_TO_FILTER)
+
     return df
 
 def export_data():
@@ -96,6 +152,7 @@ def export_data():
 def find_geoloc(driver):
     while True:
         try:
+            attempt = 0
             PATTERN = 'google.com/maps/@'
             soup = BeautifulSoup(driver.page_source, 'html.parser')
 
@@ -110,10 +167,19 @@ def find_geoloc(driver):
                 lat = google_maps_links[0].split('@')[1].split(',')[0]
                 lng = google_maps_links[0].split('@')[1].split(',')[1]
                 return lat, lng
-            else:
+            elif len(google_maps_links) > 1:
                 logging.error("Found multiple google maps links")
                 logging.info(google_maps_links)
                 return None,None
+            else:
+                logging.error("Could not find google maps links")
+                logging.info(google_maps_links)
+                attempt += 1
+                if attempt < 5:
+                    logging.warning(f"Attempt {attempt} to fetch geoloc coordinates.")
+                    time.sleep(2)
+                else:
+                    return None,None
 
         except:
             logging.error("Geoloc could not be identified.")
@@ -139,6 +205,12 @@ def check_div_exists(driver, div1, div2):
                 return div2, listing_soup  # Alternative div exists
 
             except TimeoutException:
+                # Handle no available dates case
+                no_dates_elem = listing_soup.find('div', class_='f8ipc5x atm_9s_1txwivl atm_h_1h6ojuz atm_7l_uai00n atm_bx_1ltc5j7 atm_c8_1l6y6xl atm_g3_i7n6xh atm_fr_4z8b6j atm_cs_atq67q dir dir-ltr')
+                if no_dates_elem is not None:
+                    # If no dates elements exist, then no price is existent, thus return None and ignore
+                    return None, listing_soup
+
                 logging.error("No Div Found!! Retrying...")
                 pass
 
@@ -160,8 +232,16 @@ def fetch_properties(driver, div1, div2):
     guestNum = None
     beds = None
     bedrooms = None
+    baths = None
+    isGuestFav = None
+    isSuperhost = None
     reviewIndex = None
+    reviewNum = None
     characteristics = None
+    hostname = None
+    lat = None
+    lng = None
+
 
     if div_found:
         try:
@@ -214,7 +294,7 @@ def fetch_properties(driver, div1, div2):
                 # Find div that includes the guest favorite container
                 reviewNum = listing_soup.find('div', class_ = 'r16onr0j atm_c8_exq1xd atm_g3_1pezo5y atm_fr_7aerd4 atm_gq_myb0kj atm_vv_qvpr2i atm_c8_8nb4eg__14195v1 atm_g3_1dpnnv7__14195v1 atm_fr_11dsdeo__14195v1 atm_gq_idpfg4__14195v1 dir dir-ltr')
             else:
-                reviewNum = listing_soup.find('a', class_='l1ovpqvx atm_1y33qqm_1ggndnn_10saat9 atm_17zvjtw_zk357r_10saat9 atm_w3cb4q_il40rs_10saat9 atm_1cumors_fps5y7_10saat9 atm_52zhnh_1s82m0i_10saat9 atm_jiyzzr_1d07xhn_10saat9 b1uxatsa atm_c8_1kw7nm4 atm_bx_1kw7nm4 atm_cd_1kw7nm4 atm_ci_1kw7nm4 atm_g3_1kw7nm4 atm_9j_tlke0l_1nos8r_uv4tnr atm_7l_1kw7nm4_pfnrn2 atm_rd_8stvzk_pfnrn2 c1qih7tm atm_1s_glywfm atm_26_1j28jx2 atm_3f_idpfg4 atm_9j_tlke0l atm_gi_idpfg4 atm_l8_idpfg4 atm_vb_1wugsn5 atm_7l_ujz1go atm_rd_8stvzk atm_5j_mlmjl2 atm_cs_qo5vgd atm_r3_1kw7nm4 atm_mk_h2mmj6 atm_kd_glywfm atm_9j_13gfvf7_1o5j5ji atm_7l_ujz1go_v5whe7 atm_rd_8stvzk_v5whe7 atm_7l_h5wwlf_1nos8r_uv4tnr atm_rd_8stvzk_1nos8r_uv4tnr atm_7l_xgd4j5_4fughm_uv4tnr atm_rd_8stvzk_4fughm_uv4tnr atm_rd_8stvzk_xggcrc_uv4tnr atm_7l_1eisd1c_csw3t1 atm_rd_8stvzk_csw3t1 atm_3f_glywfm_jo46a5 atm_l8_idpfg4_jo46a5 atm_gi_idpfg4_jo46a5 atm_3f_glywfm_1icshfk atm_kd_glywfm_19774hq atm_7l_ujz1go_1w3cfyq atm_rd_8stvzk_1w3cfyq atm_uc_x37zl0_1w3cfyq atm_70_1ocnt96_1w3cfyq atm_uc_glywfm_1w3cfyq_1rrf6b5 atm_7l_ujz1go_18zk5v0 atm_rd_8stvzk_18zk5v0 atm_uc_x37zl0_18zk5v0 atm_70_1ocnt96_18zk5v0 atm_uc_glywfm_18zk5v0_1rrf6b5 atm_7l_xgd4j5_1o5j5ji atm_rd_8stvzk_1o5j5ji atm_rd_8stvzk_1mj13j2 dir dir-ltr')
+                reviewNum = listing_soup.find('a', class_='l1ovpqvx atm_1y33qqm_1ggndnn_10saat9 atm_17zvjtw_zk357r_10saat9 atm_w3cb4q_il40rs_10saat9 atm_1cumors_fps5y7_10saat9 atm_52zhnh_1s82m0i_10saat9 atm_jiyzzr_1d07xhn_10saat9 b1uxatsa atm_c8_1kw7nm4 atm_bx_1kw7nm4 atm_cd_1kw7nm4 atm_ci_1kw7nm4 atm_g3_1kw7nm4 atm_9j_tlke0l_1nos8r_uv4tnr atm_7l_1kw7nm4_pfnrn2 atm_rd_8stvzk_pfnrn2 c1qih7tm atm_1s_glywfm atm_26_1j28jx2 atm_3f_idpfg4 atm_9j_tlke0l atm_gi_idpfg4 atm_l8_idpfg4 atm_vb_1wugsn5 atm_7l_ujz1go atm_rd_8stvzk atm_5j_mlmjl2 atm_cs_qo5vgd atm_r3_1kw7nm4 atm_mk_h2mmj6 atm_kd_glywfm atm_9j_13gfvf7_1o5j5ji atm_7l_ujz1go_v5whe7 atm_rd_8stvzk_v5whe7 atm_7l_h5wwlf_1nos8r_uv4tnr atm_rd_8stvzk_1nos8r_uv4tnr atm_7l_xgd4j5_4fughm_uv4tnr atm_rd_8stvzk_4fughm_uv4tnr atm_rd_8stvzk_xggcrc_uv4tnr atm_7l_1eisd1c_csw3t1 atm_rd_8stvzk_csw3t1 atm_3f_glywfm_jo46a5 atm_l8_idpfg4_jo46a5 atm_gi_idpfg4_jo46a5 atm_3f_glywfm_1icshfk atm_kd_glywfm_19774hq atm_7l_ujz1go_1w3cfyq atm_rd_8stvzk_1w3cfyq atm_uc_x37zl0_1w3cfyq atm_70_1ocnt96_1w3cfyq atm_uc_glywfm_1w3cfyq_1rrf6b5 atm_7l_ujz1go_pfnrn2_1oszvuo atm_rd_8stvzk_pfnrn2_1oszvuo atm_uc_x37zl0_pfnrn2_1oszvuo atm_70_1ocnt96_pfnrn2_1oszvuo atm_uc_glywfm_pfnrn2_1o31aam atm_7l_xgd4j5_1o5j5ji atm_rd_8stvzk_1o5j5ji atm_rd_8stvzk_1mj13j2 dir dir-ltr')
 
             # None can also be valid when few reviews have been reported
             reviewNum = reviewNum.text if reviewNum else None
@@ -298,7 +378,6 @@ def scrape_airbnb_listings(url_to_fetch):
         start_pg_time = time.time()
         if current_page == PAGE_TO_BREAK:
             logging.info(f"Reached page {current_page}, breaking...")
-            export_data()
             break
 
         logging.info(f"Scraping page: {current_page}")
@@ -321,7 +400,7 @@ def scrape_airbnb_listings(url_to_fetch):
         for listing_num, listing in enumerate(listings):
             time.sleep(1.5)
             logging.info("=====================================================================================")
-            logging.info(f"Fetching listing {listing_num+1} out of {len(listings)} listings in page {current_page}.")
+            logging.info(f"Fetching listing {listing_num+1} out of {len(listings)} listings in page {current_page} of url: {base_url}.")
             try: 
                 listing_url = listing.find('a', class_='l1ovpqvx atm_1y33qqm_1ggndnn_10saat9 atm_17zvjtw_zk357r_10saat9 atm_w3cb4q_il40rs_10saat9 atm_1cumors_fps5y7_10saat9 atm_52zhnh_1s82m0i_10saat9 atm_jiyzzr_1d07xhn_10saat9 bn2bl2p atm_5j_8todto atm_9s_1ulexfb atm_e2_1osqo2v atm_fq_idpfg4 atm_mk_stnw88 atm_tk_idpfg4 atm_vy_1osqo2v atm_26_1j28jx2 atm_3f_glywfm atm_kd_glywfm atm_3f_glywfm_jo46a5 atm_l8_idpfg4_jo46a5 atm_gi_idpfg4_jo46a5 atm_3f_glywfm_1icshfk atm_kd_glywfm_19774hq atm_uc_x37zl0_1w3cfyq_oggzyc atm_70_thabx4_1w3cfyq_oggzyc atm_uc_glywfm_1w3cfyq_pynvjw atm_uc_x37zl0_pfnrn2_ivgyl9 atm_70_thabx4_pfnrn2_ivgyl9 atm_uc_glywfm_pfnrn2_61fwbc dir dir-ltr')['href']  # Adjust if needed 
             except:
@@ -367,9 +446,6 @@ def scrape_airbnb_listings(url_to_fetch):
             time.sleep(2)  # Small delay to allow page to load
         except:
             logging.info("Reached the end of the listings!")
-            export_data()
-            # TODO
-            # DataFrame Post Processing
             break
 
     driver.quit()
@@ -386,6 +462,8 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--timeout", dest="timeout",
                         default="30", type=int,
                         help="Wait until designated number of seconds to fetch pages before performing timeout.")
+    parser.add_argument("-f", "--filter", dest="filter",
+                        default="kordelio - Evosmos Municipality/Ampelokipi - Menemeni Municipality/Stavroupoli Municipal Unit, Thessaloniki", type=str)
 
     if len(sys.argv) < 1:
         parser.print_help()
@@ -422,9 +500,12 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     TIMEOUT = args.timeout
-    PAGE_TO_BREAK = args.pages
+    PAGE_TO_BREAK = args.pages + 1
+    AREAS_TO_FILTER = args.filter.split('/') # list
 
     urls_list = args.url.split(',')
 
     for _ , url_to_fetch in enumerate(urls_list):
         scrape_airbnb_listings(url_to_fetch)
+
+    export_data()
