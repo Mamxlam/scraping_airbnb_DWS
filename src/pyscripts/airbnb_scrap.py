@@ -15,6 +15,12 @@ import os
 from datetime import datetime
 import re
 import argparse
+
+from sys import path
+from os import getcwd
+
+path.append(os.path.join(getcwd(),"..","..","src"))
+print(path)
 from pyscripts.Preprocessor import Preprocessor
 
 import osmnx as ox
