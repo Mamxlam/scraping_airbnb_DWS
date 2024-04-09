@@ -15,6 +15,7 @@ import os
 from datetime import datetime
 import re
 import argparse
+from pyscripts.Preprocessor import Preprocessor
 
 import osmnx as ox
 from shapely.geometry import Polygon
@@ -140,6 +141,14 @@ def post_proc(df):
     # Filter according to coordinates
     df = filter_loc(df, AREAS_TO_FILTER)
 
+    # Use processor class 
+    processor = Preprocessor()
+
+    # Identify missing value columns
+    miscols = processor.miscols_ident(df)
+
+    # Perform prediction on those columns to impute the NaN values
+    df = processor.impute_predictor(df,miscols)
     return df
 
 def export_data():
