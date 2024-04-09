@@ -14,16 +14,16 @@ class Preprocessor:
 
     def impute_predictor(self, dataframe, missing_columns, regressor_type="random_forest"):
         # Excluding strings
-        dataframe = dataframe.select_dtypes(exclude=['object'])
+        dataframe_no_str = dataframe.select_dtypes(exclude=['object'])
         for col in missing_columns:
-            print(f"Performing prediction imputation {col} feature which includes {dataframe[col].isnull().sum()} missing values.")
+            print(f"Performing prediction imputation {col} feature which includes {dataframe_no_str[col].isnull().sum()} missing values.")
 
             # Identify cols to perform naive imputation (eg when starting and 3 cols have NaNs,
             # to predict one you have to temporarily handle the rest)
             rest_columns = missing_columns.copy()
             rest_columns.remove(str(col))
 
-            intermediate_df = dataframe.copy()
+            intermediate_df = dataframe_no_str.copy()
             # Handle train data in case they have NaN in other cols
             intermediate_df[rest_columns] = intermediate_df[rest_columns].fillna(intermediate_df[rest_columns].mean())
             # Separation
