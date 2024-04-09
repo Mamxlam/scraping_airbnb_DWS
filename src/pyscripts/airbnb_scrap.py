@@ -150,9 +150,9 @@ def export_data():
     listing_data_df.to_csv(parent_directory+f"/data/listing_data_postproc_{current_time}.csv")
 
 def find_geoloc(driver):
+    attempt = 0
     while True:
         try:
-            attempt = 0
             PATTERN = 'google.com/maps/@'
             soup = BeautifulSoup(driver.page_source, 'html.parser')
 
@@ -172,11 +172,12 @@ def find_geoloc(driver):
                 logging.info(google_maps_links)
                 return None,None
             else:
-                logging.error("Could not find google maps links")
+                logging.warning("Could not find google maps links")
                 logging.info(google_maps_links)
                 attempt += 1
                 if attempt < 5:
                     logging.warning(f"Attempt {attempt} to fetch geoloc coordinates.")
+                    driver.execute_script("window.scrollBy(0,-400)")
                     time.sleep(2)
                 else:
                     return None,None
