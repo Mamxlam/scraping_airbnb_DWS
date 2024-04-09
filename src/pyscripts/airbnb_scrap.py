@@ -126,7 +126,7 @@ def post_proc(df):
     # If not, convert them to numeric here
 
     # Characteristics processing
-    characteristics_to_track = ['Superhost', 'Free cancellation', 'Fast wifi', 'Dedicated workspace', 'Great location', 'Furry friends', 'Highly rated', 'Self check-in', 'Great check-in', 'remote work']
+    characteristics_to_track = ['Superhost', 'Free cancellation', 'Fast wifi', 'Dedicated workspace', 'Great location', 'Furry friends', 'Highly rated', 'Self check-in', 'Great check-in', 'remote work', 'communication', 'park', 'Experienced host']
 
 # Create new columns for each characteristic and set binary values
     for char in characteristics_to_track:
@@ -220,6 +220,7 @@ def check_div_exists(driver, div1, div2):
                 return div2, listing_soup  # Alternative div exists
 
             except TimeoutException:
+                listing_soup = BeautifulSoup(driver.page_source, 'html.parser')
                 # Handle no available dates case
                 no_dates_elem = listing_soup.find('div', class_='f8ipc5x atm_9s_1txwivl atm_h_1h6ojuz atm_7l_uai00n atm_bx_1ltc5j7 atm_c8_1l6y6xl atm_g3_i7n6xh atm_fr_4z8b6j atm_cs_atq67q dir dir-ltr')
                 if no_dates_elem is not None:
