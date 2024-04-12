@@ -108,7 +108,7 @@ def post_proc(df):
     """
     
     # Price: remove currency symbol and convert to numeric
-    df['Price'] = df['Price'].str.replace('€', '').str.strip().astype(float)
+    df['Price'] = df['Price'].astype(str).str.replace('€', '').str.strip().astype(float)
     df['Host Name'] = df['Host Name'].str.replace('Hosted by ', '')
 
     # Extract numerical values from text columns
@@ -166,8 +166,8 @@ def export_data():
     # Will keep all data
     listing_data_df.to_csv(parent_directory+f"/data/listing_data_{current_time}.csv")
     # Will be updated for each search.
-    listing_data__post_proc_df = post_proc(listing_data_df)
-    listing_data__post_proc_df.to_csv(parent_directory+f"/data/listing_data_postproc_{current_time}.csv")
+    listing_data_post_proc_df = post_proc(listing_data_df.copy())
+    listing_data_post_proc_df.to_csv(parent_directory+f"/data/listing_data_postproc_{current_time}.csv")
 
 def find_geoloc(driver):
     attempt = 0
@@ -198,9 +198,9 @@ def find_geoloc(driver):
                 if attempt < 5:
                     logging.warning(f"Attempt {attempt} to fetch geoloc coordinates.")
                     driver.execute_script("window.scrollBy(0,-400)")
-                    time.sleep(2)
+                    time.sleep(1)
                 else:
-                    return None,None
+                    return -1,-1
 
         except:
             logging.error("Geoloc could not be identified.")
@@ -391,7 +391,7 @@ def scrape_airbnb_listings(url_to_fetch):
     base_url = url_to_fetch  # Replace with your target search
     driver.get(base_url)
     # Wait five secs to fetch all listings. 
-    time.sleep(5)
+    time.sleep(1.2)
 
     current_page = 0
 
@@ -420,7 +420,7 @@ def scrape_airbnb_listings(url_to_fetch):
         logging.info(f"Number of listings found in page {current_page} : {len(listings)}")
 
         for listing_num, listing in enumerate(listings):
-            time.sleep(1.5)
+            time.sleep(1)
             logging.info("=====================================================================================")
             logging.info(f"Fetching listing {listing_num+1} out of {len(listings)} listings in page {current_page} of url: {base_url}.")
             try: 
@@ -435,7 +435,7 @@ def scrape_airbnb_listings(url_to_fetch):
 
             # Remove translate popup case
             try:
-                time.sleep(2)
+                time.sleep(1)
                 popup = driver.find_element(By.XPATH, '/html/body/div[9]/div/div/section/div/div/div[2]/div')
                 logging.info("Translate Popup found. Closing...")
                 if popup:
@@ -445,7 +445,7 @@ def scrape_airbnb_listings(url_to_fetch):
 
             # Wait to fetch screen
             time.sleep(1)
-            driver.execute_script("window.scrollBy(0,4000)")
+            driver.execute_script("window.scrollBy(0,5000)")
             time.sleep(1)
 
             # Single WebDriverWait and fetch properties
@@ -459,13 +459,16 @@ def scrape_airbnb_listings(url_to_fetch):
             driver.back()  # Go back to the listings page
 
         logging.info(f"Page fetching time : {time.time() - start_pg_time} seconds. ")
+        # Export current data at end of region search
+        # Each region wil output the updated 
+        export_data()
 
         # Find and click on the "next" button (if it exists)
         try:
-            time.sleep(2)
+            time.sleep(0.5)
             next_button = driver.find_element(By.CSS_SELECTOR, '[aria-label="Next"]')
             next_button.click()
-            time.sleep(2)  # Small delay to allow page to load
+            time.sleep(1.2)  # Small delay to allow page to load
         except:
             logging.info("Reached the end of the listings!")
             break
@@ -530,8 +533,3 @@ if __name__ == "__main__":
     for _ , url_to_fetch in enumerate(urls_list):
         scrape_airbnb_listings(url_to_fetch)
 
-        # Export current data at end of region search
-        # Each region wil output the updated 
-        export_data()
-
-    export_data()
