@@ -171,6 +171,7 @@ def export_data():
 
 def find_geoloc(driver):
     attempt = 0
+    driver.execute_script("window.scrollBy(0,4000)") # make sure you are at the bottom.
     while True:
         try:
             PATTERN = 'google.com/maps/@'
@@ -195,10 +196,10 @@ def find_geoloc(driver):
                 logging.warning("Could not find google maps links")
                 logging.info(google_maps_links)
                 attempt += 1
-                if attempt < 5:
+                if attempt < 10:
                     logging.warning(f"Attempt {attempt} to fetch geoloc coordinates.")
                     driver.execute_script("window.scrollBy(0,-400)")
-                    time.sleep(1)
+                    time.sleep(1+ SLEEP_OVERHEAD)
                 else:
                     return -1,-1
 
@@ -228,7 +229,7 @@ def check_div_exists(driver, div1, div2):
             except TimeoutException:
                 listing_soup = BeautifulSoup(driver.page_source, 'html.parser')
                 # Handle no available dates case
-                no_dates_elem = listing_soup.find('div', class_='f8ipc5x atm_9s_1txwivl atm_h_1h6ojuz atm_7l_uai00n atm_bx_1ltc5j7 atm_c8_1l6y6xl atm_g3_i7n6xh atm_fr_4z8b6j atm_cs_atq67q dir dir-ltr')
+                no_dates_elem = listing_soup.find('div', class_='f8ipc5x atm_9s_1txwivl atm_h_1h6ojuz atm_7l_pn87k7 atm_bx_48h72j atm_c8_1uc0753 atm_g3_lonqig atm_fr_r7vles atm_cs_6adqpa dir dir-ltr')
                 if no_dates_elem is not None:
                     # If no dates elements exist, then no price is existent, thus return None and ignore
                     return None, listing_soup
@@ -391,7 +392,7 @@ def scrape_airbnb_listings(url_to_fetch):
     base_url = url_to_fetch  # Replace with your target search
     driver.get(base_url)
     # Wait five secs to fetch all listings. 
-    time.sleep(1.2)
+    time.sleep(1.2 + SLEEP_OVERHEAD)
 
     current_page = 0
 
@@ -420,7 +421,7 @@ def scrape_airbnb_listings(url_to_fetch):
         logging.info(f"Number of listings found in page {current_page} : {len(listings)}")
 
         for listing_num, listing in enumerate(listings):
-            time.sleep(1)
+            time.sleep(1+ SLEEP_OVERHEAD)
             logging.info("=====================================================================================")
             logging.info(f"Fetching listing {listing_num+1} out of {len(listings)} listings in page {current_page} of url: {base_url}.")
             try: 
@@ -435,7 +436,7 @@ def scrape_airbnb_listings(url_to_fetch):
 
             # Remove translate popup case
             try:
-                time.sleep(1)
+                time.sleep(1+ SLEEP_OVERHEAD)
                 popup = driver.find_element(By.XPATH, '/html/body/div[9]/div/div/section/div/div/div[2]/div')
                 logging.info("Translate Popup found. Closing...")
                 if popup:
@@ -444,9 +445,9 @@ def scrape_airbnb_listings(url_to_fetch):
                 logging.info("Translate Popup not found.")
 
             # Wait to fetch screen
-            time.sleep(1)
+            time.sleep(1+ SLEEP_OVERHEAD)
             driver.execute_script("window.scrollBy(0,5000)")
-            time.sleep(1)
+            time.sleep(1+ SLEEP_OVERHEAD)
 
             # Single WebDriverWait and fetch properties
             try:
@@ -465,10 +466,10 @@ def scrape_airbnb_listings(url_to_fetch):
 
         # Find and click on the "next" button (if it exists)
         try:
-            time.sleep(0.5)
+            time.sleep(0.5+ SLEEP_OVERHEAD)
             next_button = driver.find_element(By.CSS_SELECTOR, '[aria-label="Next"]')
             next_button.click()
-            time.sleep(1.2)  # Small delay to allow page to load
+            time.sleep(1.2+ SLEEP_OVERHEAD)  # Small delay to allow page to load
         except:
             logging.info("Reached the end of the listings!")
             break
@@ -527,6 +528,7 @@ if __name__ == "__main__":
     TIMEOUT = args.timeout
     PAGE_TO_BREAK = args.pages + 1
     AREAS_TO_FILTER = args.filter.split('/') # list
+    SLEEP_OVERHEAD = 1.3
 
     urls_list = args.url.split(',')
 
