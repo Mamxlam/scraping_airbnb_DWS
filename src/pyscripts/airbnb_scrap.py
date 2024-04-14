@@ -490,6 +490,8 @@ if __name__ == "__main__":
                         help="Wait until designated number of seconds to fetch pages before performing timeout.")
     parser.add_argument("-f", "--filter", dest="filter",
                         default="kordelio - Evosmos Municipality/Ampelokipi - Menemeni Municipality/Stavroupoli Municipal Unit, Thessaloniki", type=str)
+    parser.add_argument("-o", "--overhead", dest="overhead", type=float,
+                        default=0.5)
 
     if len(sys.argv) < 1:
         parser.print_help()
@@ -528,7 +530,7 @@ if __name__ == "__main__":
     TIMEOUT = args.timeout
     PAGE_TO_BREAK = args.pages + 1
     AREAS_TO_FILTER = args.filter.split('/') # list
-    SLEEP_OVERHEAD = 1.3
+    SLEEP_OVERHEAD = args.overhead
 
     urls_list = args.url.split(',')
 
