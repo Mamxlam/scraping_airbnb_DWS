@@ -16,6 +16,8 @@ import os
 path.append(os.path.join(getcwd(),"..","..","src"))
 from pyscripts.Preprocessor import Preprocessor
 
+st.set_page_config(layout="wide")
+
 # *** Data Loading ***
 @st.cache_data  # Caching to improve load times
 def load_airbnb_data():
@@ -71,7 +73,7 @@ def clustering(df):
     # plt.ylabel('WCSS')
     # plt.show()
 
-    cluster_range = st.sidebar.slider("Cluster Range", 1, 11)
+    cluster_range = st.slider("Clusters Number:", 1, 11)
     kmeans = KMeans(n_clusters=cluster_range, random_state=42, n_init='auto')  # Set n_clusters to 4
     kmeans.fit(data_scaled)
 
@@ -148,6 +150,10 @@ if nanExists:
 # Select box to choose columns
 selected_columns = st.multiselect('Select columns to display:', df.columns)
 
+
+# col1, col2= st.columns([0.7,0.3])
+
+# with col1:
 # Filter DataFrame based on selected columns
 if selected_columns:
     st.write('Filtered DataFrame:')
@@ -158,6 +164,8 @@ else:
     st.write(df)
     corr_matrix(df[selected_columns])
 
+st.markdown("---")
+
 # Select box to choose columns
 features = st.multiselect('Select at least 3 columns for clustering (first 3 will be shown in plot):', df.columns)
 if len(features) >= 3:
@@ -166,5 +174,5 @@ else:
     features = ['Price', 'Visitors', 'Beds', 'Bedrooms']
     clustering(df[features])
 
-
+# with col2:
 bot_top_rated_stays(df)

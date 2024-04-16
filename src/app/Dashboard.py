@@ -43,8 +43,20 @@ visitors_range = st.sidebar.slider("Visitors Range",
                                    int(data.Visitors.max()),
                                    (int(data.Visitors.min()), int(data.Visitors.max() * 0.75)))
 
+
+
+# Create a multiselect widget on the sidebar for selecting municipalities
+selected_regions = st.sidebar.multiselect(
+    'Select regions',
+    data['municipality'].unique()  # List of unique regions from the DataFrame
+)
+
+if not selected_regions:
+    selected_regions = data['municipality'].unique()
+
 # *** Filtered Data ***
 filtered_data = data[
+    (data['municipality'].isin(selected_regions)) &
     (data.Price >= price_range[0]) & 
     (data.Price <= price_range[1]) &
     (data.Visitors >= visitors_range[0]) &
@@ -53,23 +65,6 @@ filtered_data = data[
 
 # *** Main App Sections ***
 st.header("Dashboard")
-
-# *** Summary Statistics ***
-st.subheader("Summary Statistics")
-
-# Price Summary
-st.write("### Price Summary")
-st.write(filtered_data['Price'].describe().to_frame().transpose())
-
-# Visitors Summary
-st.write("### Visitors Summary")
-st.write(filtered_data['Visitors'].describe().to_frame().transpose())
-
-# Bedrooms Count
-st.write("### Bedrooms Count")
-bedrooms_count = filtered_data['Bedrooms'].value_counts().reset_index()
-bedrooms_count.columns = ['Bedrooms', 'Count']
-st.write(bedrooms_count)
 
 # Add space between sections
 st.markdown("---")
@@ -99,3 +94,21 @@ st.plotly_chart(fig_visitors)
 st.markdown("---")
 
 # ... (Add more plots: e.g., Beds vs. Price, Review Index vs. Price, etc.)
+
+
+# *** Summary Statistics ***
+st.subheader("Summary Statistics")
+
+# Price Summary
+st.write("### Price Summary")
+st.write(filtered_data['Price'].describe().to_frame().transpose())
+
+# Visitors Summary
+st.write("### Visitors Summary")
+st.write(filtered_data['Visitors'].describe().to_frame().transpose())
+
+# Bedrooms Count
+st.write("### Bedrooms Count")
+bedrooms_count = filtered_data['Bedrooms'].value_counts().reset_index()
+bedrooms_count.columns = ['Bedrooms', 'Count']
+st.write(bedrooms_count)
