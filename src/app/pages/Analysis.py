@@ -19,7 +19,7 @@ from pyscripts.Preprocessor import Preprocessor
 # *** Data Loading ***
 @st.cache_data  # Caching to improve load times
 def load_airbnb_data():
-    return pd.read_csv('../../data/listing_data_postproc_20240408_231819.csv', index_col=0)
+    return pd.read_csv('../../data/listing_data_postproc_TOKEEP.csv', index_col=0)
 
 def corr_matrix(df):
     # 1. Select the relevant columns
@@ -133,7 +133,7 @@ st.header("Analysis")
 
 df = data
 
-nanExists = df.isnull().values.any()
+nanExists = df.select_dtypes(exclude=['object']).isnull().values.any()
 
 if nanExists:
     # Use processor class 

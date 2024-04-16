@@ -24,7 +24,7 @@ st.title("Airbnb Listings Analysis")
 # *** Data Loading ***
 @st.cache_data  # Caching to improve load times
 def load_airbnb_data():
-    return pd.read_csv('../../data/listing_data_postproc_20240408_231819.csv', index_col=0)
+    return pd.read_csv('../../data/listing_data_postproc_TOKEEP.csv', index_col=0)
 
 data = load_airbnb_data()
 
@@ -37,10 +37,6 @@ price_range = st.sidebar.slider("Price Range",
                                 int(data.Price.max()),
                                 (int(data.Price.min()), int(data.Price.max() * 0.75)))
 
-# Bedrooms Selector
-bedrooms = st.sidebar.selectbox("Select number of bedrooms", 
-                                sorted(data.Bedrooms.unique()))
-
 # Visitors Slider
 visitors_range = st.sidebar.slider("Visitors Range", 
                                    int(data.Visitors.min()), 
@@ -51,7 +47,6 @@ visitors_range = st.sidebar.slider("Visitors Range",
 filtered_data = data[
     (data.Price >= price_range[0]) & 
     (data.Price <= price_range[1]) &
-    (data.Bedrooms == bedrooms) &
     (data.Visitors >= visitors_range[0]) &
     (data.Visitors <= visitors_range[1])
 ]
