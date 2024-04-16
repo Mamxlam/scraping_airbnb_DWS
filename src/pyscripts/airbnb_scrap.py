@@ -34,7 +34,8 @@ dr = webdriver.Chrome(options=Chrome_opts)
 def extract_room_attributes(html_text,nested_dict):
     official_translator = Translator()
     is_superhost, is_guest_favorite = False, False
-    overall_rating, more_about_google_api = '', ''
+    overall_rating, more_about_google_api,final_title,final_host_name = '', '',"",""
+    find_new = False
     mutable_soup = BeautifulSoup(html_text, 'html.parser')
     # ---------------------------------- Room pricing code ---------------------------------------------#
     try:
@@ -66,6 +67,7 @@ def extract_room_attributes(html_text,nested_dict):
                 count_euros += 1
 
     else:
+        print('No price search this attibutes')
         final_price_per_night = ''
     # print(f'The final price per night is {final_price_per_night}')
     # print(f"Price per night is {price_per_night}")
@@ -85,9 +87,10 @@ def extract_room_attributes(html_text,nested_dict):
 
     first_heads = [pre.select(selector='._sg8691 h3') for pre in pre_character]
 
-    second_head = [prev.select(selector='._1dmhz6v') for prev in pre_character]
+    second_head = [prev.select(selector='._cpya9i') for prev in pre_character]
 
     final_char_list = []
+    # print(first_heads,'\n',second_head)
     for f_el_init, sec_el_init in zip(first_heads, second_head):
         final_char_list.append(f_el_init[0].text + '.' + sec_el_init[0].text)
     # print(f' Host name is {final_host_name} \n with final characteristics {final_char_list} ')
@@ -111,7 +114,6 @@ def extract_room_attributes(html_text,nested_dict):
     general_info = [el.text for el in pre_general]
     room_properties = ''.join(general_info)
     pre_final_room_properties1 = room_properties.split('·')  # .replace("·",",").split(',')
-    # print()
     final_room_properties2 = [p for p in pre_final_room_properties1 if ',' not in p]
     final_room_properties = [p1 for p1 in final_room_properties2 if
                              '  ' not in p1]  # ['1 διπλό κρεβάτι ', '  ', ' Ιδιωτικό μπάνιο εντός δωματίου']
@@ -119,8 +121,9 @@ def extract_room_attributes(html_text,nested_dict):
     # sys.exit()
 
     # ----------------------------------------- GUEST FAVORITES WITH REVIEW NUMBER AND OVERALL RATING  ------------------#
-    pre_guest_favorite_tme = mutable_soup.select_one(selector='._gpz5gq ._16e70jgn .c1yo0219 .m209l21')  # a .m209l21
-    # print(pre_guest_favorite_tme,'\n',len(pre_guest_favorite_tme))
+    # pre_guest_favorite_tme = mutable_soup.select_one(selector='._gpz5gq ._16e70jgn .c1yo0219 .m209l21')  # a .m209l21
+    pre_guest_favorite_tme =mutable_soup.select_one(selector='._88xxct ._16e70jgn .c1yo0219 .m209l21') # _10qud2i ._16e70jgn .c1yo0219 .l1ovpqvx .m209l21
+    # print(pre_guest_favorite_tme)
     # print(type(pre_guest_favorite_tme)) --> It is a bs4.element.Tag
     if pre_guest_favorite_tme is not None:
         # Βρες  μου τα στοιχεία που αφορούν την επιλογή επισκεπτών
@@ -149,48 +152,44 @@ def extract_room_attributes(html_text,nested_dict):
             # print(f'Final outocmes without guest favorite tab from overall rating {overall_rating}')
             if 'Νέο' in overall_rating:
                 # print(' New Home with no overall rating')
-                overall_rating ='Νέο'
+                overall_rating = "0,0"
+                find_new = True
         else:
-            print(f'No overall rating found for this category')
+            overall_rating = "0,0"
         if len(review_number_init) != 0:  # NEO ΧΩΡΙΣ αριθμό κριτικών
             # print(f'Without guest favorites we have that REVIEW NUMBER {review_number_init}')
             number_of_ratings = review_number_init[0].text.split(" ")[0]
             # print(f'Final outocmes without guest favorite tab from reviews number {number_of_ratings}')
         else:
-            # print('Not available number of reviews for this room')
-            number_of_ratings =''
+            number_of_ratings ="0"
+    titles =mutable_soup.select(selector='._1a6d9c4 .plmw1e5 ._1e9g34tc ._1qdp1ym ._1xxgv6l')
+
+    if len(titles) ==1:
+        final_title = titles[0].text
+
+    nested_dict['title'] =final_title
+    nested_dict["New"] = find_new
     nested_dict['superhost'] = is_superhost
     nested_dict['guest_favorite'] = is_guest_favorite
     nested_dict['total_rating'] = overall_rating
     nested_dict['total_reviews'] = number_of_ratings
+    nested_dict['final_price_per_night'] = final_price_per_night.split(" ")[0]
     nested_dict['host_name'] = final_host_name.split(" ")[0]
-
     # nested_dict['characteristics'] = [official_translator.translate(el,src='el', dest='en').text for el in final_char_list]
     nested_dict['characteristics'] = final_char_list
     # nested_dict['properties'] = [official_translator.translate(el,src='el', dest='en').text for el in final_room_properties]
     nested_dict['properties'] =final_room_properties
-    nested_dict['final_price_per_night'] = final_price_per_night.split(" ")[0]
+
     return nested_dict
 
 if __name__=="__main__":
-    #Menemeni-Ampelokipoi 3-10 April
-    URL_PAGE_1 = 'https://www.airbnb.gr/s/Ampelokipoi~Menemeni--Greece/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2024-04-01&monthly_length=3&monthly_end_date=2024-07-01&price_filter_input_type=0&channel=EXPLORE&query=Ampelokipoi-Menemeni%2C%20Greece&place_id=ChIJAZMjizo6qBQRtTybGHAwKtI&date_picker_type=calendar&checkin=2024-04-03&checkout=2024-04-10&adults=3&source=structured_search_input_header&search_type=autocomplete_click'
-    URL_PAGE_6 = 'https://www.airbnb.gr/s/Ampelokipoi~Menemeni--Greece/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2024-04-01&monthly_length=3&monthly_end_date=2024-07-01&price_filter_input_type=0&channel=EXPLORE&query=Ampelokipoi-Menemeni%2C%20Greece&place_id=ChIJAZMjizo6qBQRtTybGHAwKtI&date_picker_type=calendar&checkin=2024-04-03&checkout=2024-04-10&adults=3&source=structured_search_input_header&search_type=autocomplete_click&price_filter_num_nights=7&federated_search_session_id=ee7bec67-d7f3-4daf-92bb-4c69c5232464&pagination_search=true&cursor=eyJzZWN0aW9uX29mZnNldCI6MywiaXRlbXNfb2Zmc2V0Ijo5MCwidmVyc2lvbiI6MX0%3D'
-    URL_PAGE_7 = 'https://www.airbnb.gr/s/Ampelokipoi~Menemeni--Greece/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2024-04-01&monthly_length=3&monthly_end_date=2024-07-01&price_filter_input_type=0&channel=EXPLORE&query=Ampelokipoi-Menemeni%2C%20Greece&date_picker_type=calendar&checkin=2024-04-03&checkout=2024-04-10&adults=3&source=structured_search_input_header&search_type=autocomplete_click&price_filter_num_nights=7&zoom_level=15&place_id=ChIJAZMjizo6qBQRtTybGHAwKtI&federated_search_session_id=23abab52-98b4-41e5-afaf-a4de606c57a2&pagination_search=true&cursor=eyJzZWN0aW9uX29mZnNldCI6MywiaXRlbXNfb2Zmc2V0IjoxMDgsInZlcnNpb24iOjF9'
-    URL_PAGE_11 ='https://www.airbnb.gr/s/Ampelokipoi~Menemeni--Greece/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2024-04-01&monthly_length=3&monthly_end_date=2024-07-01&price_filter_input_type=0&channel=EXPLORE&query=Ampelokipoi-Menemeni%2C%20Greece&place_id=ChIJAZMjizo6qBQRtTybGHAwKtI&date_picker_type=calendar&checkin=2024-04-03&checkout=2024-04-10&adults=3&source=structured_search_input_header&search_type=autocomplete_click'
-    URL_PAGE_15 ='https://www.airbnb.gr/s/Ampelokipoi~Menemeni--Greece/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2024-04-01&monthly_length=3&monthly_end_date=2024-07-01&price_filter_input_type=0&channel=EXPLORE&query=Ampelokipoi-Menemeni%2C%20Greece&date_picker_type=calendar&checkin=2024-04-03&checkout=2024-04-10&adults=3&source=structured_search_input_header&search_type=autocomplete_click&price_filter_num_nights=7&zoom_level=15&place_id=ChIJAZMjizo6qBQRtTybGHAwKtI&federated_search_session_id=23abab52-98b4-41e5-afaf-a4de606c57a2&pagination_search=true&cursor=eyJzZWN0aW9uX29mZnNldCI6MywiaXRlbXNfb2Zmc2V0IjoyNTIsInZlcnNpb24iOjF9'
-    # TODO EAN TYXON DEN TREXOYN OI ΣΕΛΙΔΕΣ ΚΑΙ ΤΟ ΣΠΑΣΕΙΣ ΤΟΤΕ ΘΑ ΧΡΕΙΑΣΤΕΙ ΝΑ ΠΑΙΞΕΙΣ ΜΠΑΛΑ
     # Menemeni-Ampelokipoi 3-10 September
     URL_PAGE_1_MEN ='https://www.airbnb.gr/s/Ampelokipoi~Menemeni--Greece/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&monthly_end_date=2024-07-01&price_filter_input_type=0&channel=EXPLORE&query=Ampelokipoi-Menemeni%2C%20Greece&place_id=ChIJAZMjizo6qBQRtTybGHAwKtI&date_picker_type=calendar&adults=3&source=structured_search_input_header&search_type=filter_change&price_filter_num_nights=2&checkin=2024-09-03&checkout=2024-09-10&monthly_start_date=2024-04-01&monthly_length=3'
     # Evosmos 3-10 September
     URL_PAGE_1_EVO = 'https://www.airbnb.gr/s/Evosmos--%CE%98%CE%B5%CF%83%CF%83%CE%B1%CE%BB%CE%BF%CE%BD%CE%AF%CE%BA%CE%B7/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&monthly_end_date=2024-07-01&price_filter_input_type=0&channel=EXPLORE&query=Evosmos%2C%20%CE%98%CE%B5%CF%83%CF%83%CE%B1%CE%BB%CE%BF%CE%BD%CE%AF%CE%BA%CE%B7&date_picker_type=calendar&adults=3&source=structured_search_input_header&search_type=autocomplete_click&price_filter_num_nights=7&checkin=2024-09-03&checkout=2024-09-10&monthly_start_date=2024-04-01&monthly_length=3&place_id=ChIJl5tHov45qBQRgKS54iy9AAQ'
     #Stavropoli 3-10 September
     URL_PAGE_1_STAV ='https://www.airbnb.gr/s/Stavroupoli--%CE%95%CE%BB%CE%BB%CE%AC%CE%B4%CE%B1/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&monthly_end_date=2024-07-01&price_filter_input_type=0&channel=EXPLORE&date_picker_type=calendar&adults=3&source=structured_search_input_header&search_type=autocomplete_click&price_filter_num_nights=7&checkin=2024-09-03&checkout=2024-09-10&monthly_start_date=2024-04-01&monthly_length=3&query=Stavroupoli%2C%20%CE%95%CE%BB%CE%BB%CE%AC%CE%B4%CE%B1&place_id=ChIJscTudt45qBQR4KW54iy9AAQ'
-    #
 
-    # pre_number_of_total_pages = dr.find_element(By.XPATH,value='//*[@id="site-content"]/div/div[3]/div/div/div/nav/div/a[4]').text
-    # print(pre_number_of_total_pages)
-    # print(pre_number_of_total_pages,type(pre_number_of_total_pages))
     total_number_of_pages = 15 # int(pre_number_of_total_pages) Μονο για την αρχή μας χρειάζεται
     next_butt = 0
     dictionary_for_mongo_db,my_dict = {},{}
@@ -198,12 +197,29 @@ if __name__=="__main__":
 
     for page_ in range(total_number_of_pages):
         dictionary_for_mongo_db[page_+1] ={}
+        found_obstacle,found_obstacle_f_time = False,False
         for i in range(1,19):
+            count_prop = i
             dictionary_for_mongo_db[page_ + 1][i]={}
-            time.sleep(3)#5
+            time.sleep(5)#(3)#5
             # wait = WebDriverWait(dr,30)
             # time.sleep(2)
-            room_url =dr.find_element(By.XPATH, value=f'//*[@id="site-content"]/div/div[2]/div/div/div/div/div[1]/div[{i}]/div/div[2]/div/div/div/div/div/div[1]/div/div/div[2]/div/div/div/div/a[1]')
+            if found_obstacle_f_time:
+                dr.execute_script("window.scrollBy(0, 860);")
+                found_obstacle_f_time = False
+            if found_obstacle:
+                count_prop = i+1
+            else:
+                count_prop = i
+            try:
+                room_url =dr.find_element(By.XPATH, value=f'//*[@id="site-content"]/div/div[2]/div/div/div/div/div[1]/div[{count_prop}]/div/div[2]/div/div/div/div/div/div[1]/div/div/div[2]/div/div/div/div/a[1]')
+            except:
+                found_obstacle_f_time = True
+                found_obstacle = True
+                # dr.execute_script("window.scrollBy(0, 800);")
+                room_url = dr.find_element(By.XPATH, value=f'//*[@id="site-content"]/div/div[2]/div/div/div/div/div[1]/div[{count_prop+1}]/div/div[2]/div/div/div/div/div/div[1]/div/div/div[2]/div/div/div/div/a[1]')
+                print('almost overcome obstacles')
+                # time.sleep(3)
             # room_url = wait.until(EC.element_to_be_clickable((By.XPATH,f'//*[@id="site-content"]/div/div[2]/div/div/div/div/div[1]/div[{i}]/div/div[2]/div/div/div/div/div/div[1]/div/div/div[2]/div/div/div/div/a[1]')))
             # room_url =
 
@@ -241,7 +257,7 @@ if __name__=="__main__":
                 wanted_coordinates_link =google_but.get_property('href').split("?")[1].split("=")[1].split(",")
                 my_dict['coordinates'] = wanted_coordinates_link[0] + "," + wanted_coordinates_link[1].split('&')[0]
             except selenium.common.exceptions.NoSuchElementException:
-                print('No coordinates')
+                print('No coordinates search this attibutes')
                 my_dict['coordinates'] =''
             # time.sleep(10)
 
@@ -254,9 +270,16 @@ if __name__=="__main__":
             dr.switch_to.window(new_windows_list[0])
             # print(dr.current_window_handle)
             time.sleep(2)
+            # if i == 11 and page_ == 0:
+            #     print(f'Nikoooosss prepare yourself soldier -------------------------------------------')
+            #     print('smooth scrolling!')
+            #     dr.execute_script("window.scrollBy(0, 425);")
             if i% 4 ==0:
+            # if i > 13 and page_ == 0:
                 dr.execute_script("window.scrollBy(0, 850);")
                 # print("screen has scrolled")
+
+
             # R
             with open(f'./results/page{page_ + 1}_property_{i}.json','w') as datafile:
                 json.dump(my_dict,datafile,indent= 4)
