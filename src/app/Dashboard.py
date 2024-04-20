@@ -16,6 +16,12 @@ import os
 path.append(os.path.join(getcwd(),"..","..","src"))
 from pyscripts.Preprocessor import Preprocessor
 
+st.set_page_config(layout="wide")
+
+# Calculate figure width and height dynamically based on window width
+WIN_WIDTH = st.sidebar.number_input('Enter window width (height is 40% of width)', value=1200)
+FIG_WIDTH = 0.9 * WIN_WIDTH  # 90% of window width or maximum of 800 pixels
+FIG_HEIGHT = 0.4 * FIG_WIDTH  # Maintain aspect ratio
 
 
 # *** App Title ***
@@ -69,26 +75,107 @@ st.header("Dashboard")
 # Add space between sections
 st.markdown("---")
 
-# *** Price Distribution (Using Plotly) ***
-st.subheader("Price Distribution")
-fig_price = px.histogram(filtered_data, x="Price", nbins=30, title="Price Distribution")
-st.plotly_chart(fig_price)
+
+listings_per_municipality = data['municipality'].value_counts().reset_index()
+listings_per_municipality.columns = ['municipality', 'Number of Listings']
+
+# Create a bar chart using Plotly
+fig = px.bar(
+    listings_per_municipality,
+    x='municipality',
+    y='Number of Listings',
+    labels={'Number of Listings': 'Number of Listings', 'Municipality': 'municipality'},
+    title='Number of Available Listings per Municipality'
+)
+
+# Update layout to adjust figure size
+fig.update_layout(
+    width=FIG_WIDTH,  # Set width of the figure
+    height=FIG_HEIGHT  # Set height of the figure
+)
+
+# Streamlit display
+st.subheader("Available Listings per Municipality")
+st.plotly_chart(fig)
 
 # Add space between sections
 st.markdown("---")
 
 # *** Price Distribution (Using Plotly) ***
-st.subheader("Visitors Distribution")
-fig_price = px.histogram(filtered_data, x="Visitors", nbins=30, title="Visitors Distribution")
+st.subheader("Price Distribution")
+fig_price = px.histogram(filtered_data, x="Price", nbins=30, title="Price Distribution")
+# Update layout to adjust figure size
+fig_price.update_layout(
+    width=FIG_WIDTH,  # Set width of the figure
+    height=FIG_HEIGHT  # Set height of the figure
+)
 st.plotly_chart(fig_price)
+
+# Add space between sections
+st.markdown("---")
+
+# *** Visitors Distribution (Using Plotly) ***
+st.subheader("Visitors Distribution")
+fig_visitors = px.histogram(filtered_data, x="Visitors", nbins=30, title="Visitors Distribution")
+# Update layout to adjust figure size
+fig_visitors.update_layout(
+    width=FIG_WIDTH,  # Set width of the figure
+    height=FIG_HEIGHT  # Set height of the figure
+)
+st.plotly_chart(fig_visitors)
 
 # Add space between sections
 st.markdown("---")
 
 # *** Visitors vs. Price (Using Plotly) ***
 st.subheader("Visitors vs. Price")
-fig_visitors = px.scatter(filtered_data, x="Visitors", y="Price", title="Visitors vs. Price")
-st.plotly_chart(fig_visitors)
+fig_visitorsvsPrice = px.violin(
+    filtered_data, 
+    y="Price", 
+    x="Visitors", 
+    title="Visitors vs. Price", 
+    box=True, 
+    points="all"
+)
+fig_visitorsvsPrice.update_layout(
+    width=FIG_WIDTH,  # Set width of the figure
+    height=FIG_HEIGHT  # Set height of the figure
+)
+st.plotly_chart(fig_visitorsvsPrice)
+
+
+
+# Add space between sections
+st.markdown("---")
+
+# *** Visitors Distribution (Using Plotly) ***
+st.subheader("Review Index Distribution")
+fig = px.histogram(filtered_data, x="Review Index", nbins=10, title="Review Index Distribution")
+# Update layout to adjust figure size
+fig.update_layout(
+    width=FIG_WIDTH,  # Set width of the figure
+    height=FIG_HEIGHT  # Set height of the figure
+)
+st.plotly_chart(fig)
+
+
+
+# Add space between sections
+st.markdown("---")
+
+
+
+# *** Visitors Distribution (Using Plotly) ***
+st.subheader("Number of Reviews Distribution")
+fig = px.histogram(filtered_data, x="Number of reviews", nbins=30, title="Review Index Distribution")
+# Update layout to adjust figure size
+fig.update_layout(
+    width=FIG_WIDTH,  # Set width of the figure
+    height=FIG_HEIGHT  # Set height of the figure
+)
+st.plotly_chart(fig)
+
+
 
 # Add space between sections
 st.markdown("---")
