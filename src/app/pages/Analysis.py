@@ -420,7 +420,10 @@ def plot_map(data):
     center_lon = data['Longitude'].mean()
 
     # Create the Folium map object
-    map = folium.Map(location=[center_lat, center_lon], zoom_start=12)
+    map = folium.Map(
+        location=[center_lat, center_lon], 
+        zoom_start=13
+    )
 
     # Columns you want to display in the popup
     display_columns = [
@@ -446,9 +449,20 @@ def plot_map(data):
             icon=folium.Icon(color='red', icon='info-sign')  # Customize color if needed
         ).add_to(map)
 
+    folium_static(map, width=FIG_WIDTH, height=FIG_HEIGHT)
 
-    # Streamlit display
-    st.title("Interactive Property Map")
-    folium_static(map)
 
-plot_map(data)
+# Streamlit display
+st.write('##### Review Listings in Map per location indicated.')
+st.write('')
+st.write('')
+# Create a multiselect widget on the sidebar for selecting municipalities
+selected_regions = st.multiselect(
+    'Select Municipality to show listings',
+    data['municipality'].unique()  # List of unique regions from the DataFrame
+)
+
+if not selected_regions:
+    selected_regions = data['municipality'].unique()
+
+plot_map(data[(data['municipality'].isin(selected_regions))])
