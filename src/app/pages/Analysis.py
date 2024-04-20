@@ -22,7 +22,7 @@ from streamlit_folium import folium_static
 st.set_page_config(layout="wide")
 
 # Calculate figure width and height dynamically based on window width
-WIN_WIDTH = st.sidebar.number_input('Enter window width', value=800)
+WIN_WIDTH = st.sidebar.number_input('Enter window width (height is 40% of width)', value=1200)
 FIG_WIDTH = 0.9 * WIN_WIDTH  # 90% of window width or maximum of 800 pixels
 FIG_HEIGHT = 0.4 * FIG_WIDTH  # Maintain aspect ratio
 
@@ -255,7 +255,7 @@ st.plotly_chart(fig1)
 corr_matrix(df.filter(regex=r'(char_*|Review)'), title="Corellation of Characteristics and Ratings")
 
 
-
+st.markdown("---")
 
 
 
@@ -382,73 +382,73 @@ corr_matrix(df.filter(regex=r'(char_*|Review)'), title="Corellation of Character
 # )
 
 
-# Create a PyDeck scatter plot
-view = pdk.ViewState(latitude=data['Latitude'].mean(),
-                    longitude=data['Longitude'].mean(),
-                    zoom=11,
-                    pitch=50)
+# # Create a PyDeck scatter plot
+# view = pdk.ViewState(latitude=data['Latitude'].mean(),
+#                     longitude=data['Longitude'].mean(),
+#                     zoom=11,
+#                     pitch=50)
 
-scatter_layer = pdk.Layer(
-    'HexagonLayer',
-    data=data,
-    get_position='[Longitude, Latitude]',
-    get_elevation='Price',
-    radius=40,
-    elevation_scale=4,
-    elevation_range=[0, 1000],
-    pickable=True,
-    extruded=True
-)
+# scatter_layer = pdk.Layer(
+#     'HexagonLayer',
+#     data=data,
+#     get_position='[Longitude, Latitude]',
+#     get_elevation='Price',
+#     radius=40,
+#     elevation_scale=4,
+#     elevation_range=[0, 1000],
+#     pickable=True,
+#     extruded=True
+# )
 
-tooltip = {
-    "html": "<b>{Longitude}</b> meters away from an MRT station, costs <b>{Latitude}</b> NTD/sqm",
-    "style": {"background": "grey", "color": "white", "font-family": '"Helvetica Neue", Arial', "z-index": "10000"},
-}
+# tooltip = {
+#     "html": "<b>{Longitude}</b> meters away from an MRT station, costs <b>{Latitude}</b> NTD/sqm",
+#     "style": {"background": "grey", "color": "white", "font-family": '"Helvetica Neue", Arial', "z-index": "10000"},
+# }
 
-scatter_plot = pdk.Deck(
-    layers=scatter_layer,
-    initial_view_state=view,
-    tooltip=tooltip
-)
+# scatter_plot = pdk.Deck(
+#     layers=scatter_layer,
+#     initial_view_state=view,
+#     tooltip=tooltip
+# )
 
-# Show the PyDeck plot
-st.pydeck_chart(scatter_plot)
+# # Show the PyDeck plot
+# st.pydeck_chart(scatter_plot)
 
-# def plot_map(data):
-#     # Center the map on a reasonable starting location 
-#     center_lat = data['Latitude'].mean()
-#     center_lon = data['Longitude'].mean()
+def plot_map(data):
+    # Center the map on a reasonable starting location 
+    center_lat = data['Latitude'].mean()
+    center_lon = data['Longitude'].mean()
 
-#     # Create the Folium map object
-#     map = folium.Map(location=[center_lat, center_lon], zoom_start=12)
+    # Create the Folium map object
+    map = folium.Map(location=[center_lat, center_lon], zoom_start=12)
 
-#     # Columns you want to display in the popup
-#     display_columns = [
-#         'Price', 'Title', 'Visitors', 'Bedrooms', 'Guest Favorite', 'Superhost', 
-#         'Number of Reviews'
-#     ]
+    # Columns you want to display in the popup
+    display_columns = [
+        'Price', 'Title', 'Visitors', 'Bedrooms', 'Guest Favorite', 'Superhost', 
+        'Number of Reviews'
+    ]
 
-#     # Iterate through your data to add markers with popups
-#     for _, row in data.iterrows():
-#         html = f""""""
+    # Iterate through your data to add markers with popups
+    for _, row in data.iterrows():
+        html = f""""""
 
-#         # Add more information based on the display_columns list 
-#         for col in display_columns:
-#             if col in data.columns:
-#                 html += f"<b>{col}:</b> {row[col]}<br>"
+        # Add more information based on the display_columns list 
+        for col in display_columns:
+            if col in data.columns:
+                html += f"<b>{col}:</b> {row[col]}<br>"
 
-#         iframe = folium.IFrame(html=html, width=250, height=150)
-#         popup = folium.Popup(iframe, max_width=250)
+        iframe = folium.IFrame(html=html, width=250, height=150)
+        popup = folium.Popup(iframe, max_width=250)
 
-#         folium.Marker(
-#             location=[row['Latitude'], row['Longitude']],
-#             popup=popup,
-#             icon=folium.Icon(color='red', icon='info-sign')  # Customize color if needed
-#         ).add_to(map)
+        folium.Marker(
+            location=[row['Latitude'], row['Longitude']],
+            popup=popup,
+            icon=folium.Icon(color='red', icon='info-sign')  # Customize color if needed
+        ).add_to(map)
 
 
-#     # Streamlit display
-#     st.title("Interactive Property Map")
-#     folium_static(map)
+    # Streamlit display
+    st.title("Interactive Property Map")
+    folium_static(map)
 
-# plot_map(data)
+plot_map(data)
