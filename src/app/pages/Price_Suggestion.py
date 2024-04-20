@@ -28,7 +28,7 @@ from pyscripts.Preprocessor import Preprocessor
 
 st.set_page_config(layout="wide")
 
-
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # *** Data Loading ***
 @st.cache_data  # Caching to improve load times
@@ -43,48 +43,54 @@ st.write('##### Listing Data Overview')
 st.write(data)
 
 # Split data into features and target
-X = data.drop(columns=['Price','Title','Host Name'])
+X = data.drop(columns=['Price','Title','Host Name', 'municipality'])
 y = data['Price']
 
 
-# One-hot encoding for categorical feature
-ct = ColumnTransformer(
-    [('one_hot_encoder', OneHotEncoder(drop='first'), ['municipality'])],
-    remainder='passthrough'
-)
+# # One-hot encoding for categorical feature
+# ct = ColumnTransformer(
+#     [('one_hot_encoder', OneHotEncoder(drop='first'), ['municipality'])],
+#     remainder='passthrough'
+# )
 
-X_encoded = ct.fit_transform(X)
+# X_encoded = ct.fit_transform(X)
 
-# Standardize features
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X_encoded)
+# # Standardize features
+# scaler = StandardScaler()
+# X_scaled = scaler.fit_transform(X_encoded)
 
 # Train test split
-X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Train regression models
-@st.cache_resource
+# @st.cache_resource
 def train_elastic_net():
     model = ElasticNet(alpha=0.1, l1_ratio=0.5)
     model.fit(X_train, y_train)
     return model
 
-@st.cache_resource
+# @st.cache_resource
 def train_random_forest():
     model = RandomForestRegressor(n_estimators=100, random_state=42)
     model.fit(X_train, y_train)
     return model
 
-@st.cache_resource
+# @st.cache_resource
 def train_lightgbm():
     model = lgb.LGBMRegressor()
     model.fit(X_train, y_train)
     return model
 
-@st.cache_resource
-def shap_values_gen(_model, train, test):
+# @st.cache_resource
+def shap_values_gen(_model, train, test, show=True):
     explainer = shap.Explainer(_model, train)
     shap_values = explainer(test)
+    
+    if show:
+        fig = shap.force_plot(
+            explainer.expected_value, shap_values.values, test.iloc[0], matplotlib=True
+        )
+        st.pyplot(fig)
     return shap_values
 
 elastic_net = train_elastic_net()
@@ -100,7 +106,7 @@ model_type = st.selectbox("Select Model", ["ElasticNet", "Random Forest", "Light
 # Create an editable row for user input based on original DataFrame columns
 user_input_df = pd.DataFrame()
 
-for col in X.columns:
+for col in X_train.columns:
     if col == 'municipality':
         user_input_df[col] = [st.sidebar.selectbox(f"{col}", data[col].unique())]
     else:
@@ -110,26 +116,30 @@ if st.button("Predict"):
     if user_input_df.isna().any().any() or user_input_df.isin(['']).any().any():
         st.warning("Please provide input for all features.")
     else:
-        enc_user_input = ct.transform(user_input_df)
-        sc_user_input = scaler.transform(enc_user_input)
+        user_input_df = user_input_df.astype("float32")
+        # enc_user_input = ct.transform(user_input_df)
+        # sc_user_input = scaler.transform(enc_user_input)
         # Predict price based on selected model
         if model_type == "ElasticNet":
             # Create shap explainer and calculate shap values
-            shap_values = shap_values_gen(elastic_net, X_train, sc_user_input)
-            prediction = elastic_net.predict(sc_user_input)
+            shap_values = shap_values_gen(elastic_net, X_train, user_input_df)
+            prediction = elastic_net.predict(user_input_df)
         elif model_type == "Random Forest":
-            shap_values = shap_values_gen(elastic_net, X_train, sc_user_input)
-            prediction = random_forest.predict(sc_user_input)
+            shap_values = shap_values_gen(random_forest, X_train, user_input_df)
+            prediction = random_forest.predict(user_input_df)
         else:
-            shap_values = shap_values_gen(elastic_net, X_train, sc_user_input)
-            prediction = lgb_model.predict(sc_user_input)
+            shap_values = shap_values_gen(lgb_model, X_train, user_input_df)
+            prediction = lgb_model.predict(user_input_df)
+
+        
 
         # Display prediction
         st.subheader(f"Predicted Price: {prediction[0]}")
 
         # Display Shapley values summary plot
         st.subheader("Shapley Values Summary Plot")
-        fig_summary = shap.summary_plot(shap_values, sc_user_input)
+        shap_values_train = shap_values_gen(elastic_net, X_train, X_train, show=False)
+        fig_summary = shap.summary_plot(shap_values_train, X_train)
         st.pyplot(fig_summary)
 
 
