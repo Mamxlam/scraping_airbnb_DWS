@@ -10,11 +10,6 @@ import plotly.express as px
 from plotly import graph_objects as go
 from plotly.graph_objects import Figure
 
-from sys import path
-from os import getcwd
-import os
-path.append(os.path.join(getcwd(),"..","..","src"))
-from pyscripts.Preprocessor import Preprocessor
 
 st.set_page_config(layout="wide")
 
