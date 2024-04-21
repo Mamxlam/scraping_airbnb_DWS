@@ -19,6 +19,8 @@ import pydeck as pdk
 import folium 
 from streamlit_folium import folium_static
 
+print(getcwd())
+
 st.set_page_config(layout="wide")
 
 # Calculate figure width and height dynamically based on window width

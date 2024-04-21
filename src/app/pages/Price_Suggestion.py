@@ -23,8 +23,6 @@ import shap
 from sys import path
 from os import getcwd
 import os
-path.append(os.path.join(getcwd(),"..","..","src"))
-from pyscripts.Preprocessor import Preprocessor
 
 st.set_page_config(layout="wide")
 
