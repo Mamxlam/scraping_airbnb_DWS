@@ -387,4 +387,3 @@ dependencies:
   - zlib=1.2.13=hd590300_5
   - zope.interface=6.2=py312h98912ed_0
   - zstd=1.5.5=hfc55251_0
-prefix: /home/marios/anaconda3/envs/scraping_env
