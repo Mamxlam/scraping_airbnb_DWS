@@ -14,37 +14,18 @@ import sys
 import os
 from datetime import datetime
 import re
+import argparse
 
-script_path = os.path.abspath(sys.argv[0])
-print(f"The path of the currently executing script is: {script_path}")
-# Go up three levels
-parent_directory = os.path.dirname(script_path)
-for _ in range(2):
-    parent_directory = os.path.dirname(parent_directory)
+from sys import path
+from os import getcwd
 
-# Configure logging
-current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
-logging.basicConfig(filename=parent_directory+f'/logs/scrapapp_{current_time}.log', level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+path.append(os.path.join(getcwd(),"..","..","src"))
+from pyscripts.Preprocessor import Preprocessor
 
-# Create a handler for writing log messages to the standard output (console)
-console_handler = logging.StreamHandler(sys.stdout)
-console_handler.setLevel(logging.INFO)
+import osmnx as ox
+from shapely.geometry import Polygon
+from shapely.geometry import Point
 
-# Create a formatter for the console handler
-console_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-
-# Add the formatter to the console handler
-console_handler.setFormatter(console_formatter)
-
-# Add the console handler to the root logger
-logging.getLogger('').addHandler(console_handler)
-
-logging.info(f"Logfile will be saved at path: {parent_directory+f'/logs/scrapapp_{current_time}.log'}")
-logging.info(f"Data will be saved at path: {parent_directory+f"/data/listing_data_{current_time}.csv"}")
-
-TIMEOUT=30
-PAGE_TO_BREAK=2
 COLUMNS = [
     'Price', 'Title', 'Visitors', 'Beds', 'Bedrooms', 'Baths', 
     'Guest Favorite', 'Superhost', 'Review Index', 'Number of reviews', 
@@ -52,6 +33,54 @@ COLUMNS = [
 ]
 
 listing_data_df = pd.DataFrame(columns=COLUMNS)
+
+def is_within_city(row, city_polygon):
+    """
+    Checks if a geographical point lies within a city polygon.
+
+    Args:
+        row (pandas.Series): A row from a DataFrame containing 'Longitude' and 'Latitude' columns.
+        city_polygon (shapely.geometry.Polygon): A Shapely Polygon representing the city boundary.
+
+    Returns:
+        bool: True if the point is within the city polygon, False otherwise.
+    """
+
+    point = Point(row['Longitude'], row['Latitude'])
+    return city_polygon.geometry.contains(point) 
+
+def filter_loc(df, areas):
+    """
+    Filters a DataFrame of geographical points based on containment within a set of city areas. 
+
+    Args:
+        df (pandas.DataFrame): A DataFrame containing 'Longitude' and 'Latitude' columns.
+        areas (list): A list of city names as strings.
+
+    Returns:
+        pandas.DataFrame: A filtered DataFrame containing only points within all specified city areas.
+    """
+    try:
+        union_polygon = None  # Initialize union polygon
+
+        for num, area in enumerate(areas):
+            area_polygon = ox.geocode_to_gdf(area)['geometry']
+
+            if num == 0:
+                union_polygon = area_polygon  
+            else:
+                union_polygon = union_polygon.union(area_polygon) 
+
+        mask_df = df.apply(is_within_city, args=(union_polygon,), axis=1).all(axis=1)
+
+        logging.info(f"Filtered out {(~mask_df).sum()} rows from dataframe, due to out of border coordinates...")
+
+        df_filtered = df[mask_df]
+
+        return df_filtered
+    except:
+        logging.error("Did not perform geoloc filtering. Please investigate.")
+        return df
 
 # Helper function to extract numbers from text
 def extract_number(text):
@@ -79,7 +108,7 @@ def post_proc(df):
     """
     
     # Price: remove currency symbol and convert to numeric
-    df['Price'] = df['Price'].str.replace('€', '').str.strip().astype(float)
+    df['Price'] = df['Price'].astype(str).str.replace('€', '').str.strip().astype(float)
     df['Host Name'] = df['Host Name'].str.replace('Hosted by ', '')
 
     # Extract numerical values from text columns
@@ -93,32 +122,56 @@ def post_proc(df):
     df['Review Index'] = df['Review Index'].apply(extract_number).astype(float)
 
     # Convert categorical columns to binary
-    df['Guest Favorite'] = df['Guest Favorite'].apply(lambda x: 1 if x == 'Guest favorite' else 0)
-    df['Superhost'] = df['Superhost'].apply(lambda x: 1 if x == 'Superhost' else 0)
+    df['Guest Favorite'] = df['Guest Favorite'].astype(str).apply(lambda x: 1 if 'favorite' in x else 0)
+    df['Superhost'] = df['Superhost'].astype(str).apply(lambda x: 1 if 'Superhost' in x else 0)
 
     # Assuming Latitude and Longitude are already in numeric format
     # If not, convert them to numeric here
 
     # Characteristics processing
-    characteristics_to_track = ['Superhost', 'Free cancellation', 'Fast wifi', 'Dedicated workspace', 'Great location', 'Furry friends', 'Highly rated', 'Self check-in', 'Great check-in']
+    characteristics_to_track = ['Superhost', 'Free cancellation', 'Fast wifi', 'Dedicated workspace', 'Great location', 'Furry friends', 'Highly rated', 'Self check-in', 'Great check-in', 'remote work', 'communication', 'park', 'Experienced host']
 
-    # Create new columns for each characteristic and set binary values
+# Create new columns for each characteristic and set binary values
     for char in characteristics_to_track:
-        df['char_' + char.lower().replace(' ', '_')] = df['Characteristics'].str.contains(char).astype(int)
+        # Check for NaN values in 'Characteristics' column
+        if not df['Characteristics'].isna().all():
+            df['char_' + char.lower().replace(' ', '_')] = df['Characteristics'].str.contains(char, na=False).astype(int)
+        else:
+            df['char_' + char.lower().replace(' ', '_')] = 0
 
     # Drop the original 'Characteristics' column
     df.drop('Characteristics', axis=1, inplace=True)
+
+    logging.info(f'Number of duplicate entries in dataframe : {len(df) - len(df.drop_duplicates())}')
+
+    df.drop_duplicates(inplace=True)
+
+    # Use processor class 
+    processor = Preprocessor()
+
+    # Identify missing value columns
+    miscols = processor.miscols_ident(df)
+
+    # Perform prediction on those columns to impute the NaN values
+    df = processor.impute_predictor(df,miscols)
+
+    # Filter according to coordinates
+    df = filter_loc(df, AREAS_TO_FILTER)
 
     return df
 
 def export_data():
     global current_time
     global listing_data_df
+    # Will keep all data
     listing_data_df.to_csv(parent_directory+f"/data/listing_data_{current_time}.csv")
-    listing_data_df = post_proc(listing_data_df)
-    listing_data_df.to_csv(parent_directory+f"/data/listing_data_postproc_{current_time}.csv")
+    # Will be updated for each search.
+    listing_data_post_proc_df = post_proc(listing_data_df.copy())
+    listing_data_post_proc_df.to_csv(parent_directory+f"/data/listing_data_postproc_{current_time}.csv")
 
 def find_geoloc(driver):
+    attempt = 0
+    driver.execute_script("window.scrollBy(0,4000)") # make sure you are at the bottom.
     while True:
         try:
             PATTERN = 'google.com/maps/@'
@@ -135,10 +188,20 @@ def find_geoloc(driver):
                 lat = google_maps_links[0].split('@')[1].split(',')[0]
                 lng = google_maps_links[0].split('@')[1].split(',')[1]
                 return lat, lng
-            else:
+            elif len(google_maps_links) > 1:
                 logging.error("Found multiple google maps links")
                 logging.info(google_maps_links)
                 return None,None
+            else:
+                logging.warning("Could not find google maps links")
+                logging.info(google_maps_links)
+                attempt += 1
+                if attempt < 10:
+                    logging.warning(f"Attempt {attempt} to fetch geoloc coordinates.")
+                    driver.execute_script("window.scrollBy(0,-400)")
+                    time.sleep(1+ SLEEP_OVERHEAD)
+                else:
+                    return -1,-1
 
         except:
             logging.error("Geoloc could not be identified.")
@@ -164,6 +227,13 @@ def check_div_exists(driver, div1, div2):
                 return div2, listing_soup  # Alternative div exists
 
             except TimeoutException:
+                listing_soup = BeautifulSoup(driver.page_source, 'html.parser')
+                # Handle no available dates case
+                no_dates_elem = listing_soup.find('div', class_='f8ipc5x atm_9s_1txwivl atm_h_1h6ojuz atm_7l_pn87k7 atm_bx_48h72j atm_c8_1uc0753 atm_g3_lonqig atm_fr_r7vles atm_cs_6adqpa dir dir-ltr')
+                if no_dates_elem is not None:
+                    # If no dates elements exist, then no price is existent, thus return None and ignore
+                    return None, listing_soup
+
                 logging.error("No Div Found!! Retrying...")
                 pass
 
@@ -185,8 +255,16 @@ def fetch_properties(driver, div1, div2):
     guestNum = None
     beds = None
     bedrooms = None
+    baths = None
+    isGuestFav = None
+    isSuperhost = None
     reviewIndex = None
+    reviewNum = None
     characteristics = None
+    hostname = None
+    lat = None
+    lng = None
+
 
     if div_found:
         try:
@@ -224,7 +302,7 @@ def fetch_properties(driver, div1, div2):
         try:
             if isGuestFav:
                 # Find div that includes the guest favorite container
-                reviewIndex = listing_soup.find('div', class_ = 'a8jhwcl atm_c8_exq1xd atm_g3_1pezo5y atm_fr_7aerd4 atm_9s_1txwivl atm_ar_1bp4okc atm_h_1h6ojuz atm_cx_t94yts atm_le_14y27yu atm_c8_8nb4eg__14195v1 atm_g3_1dpnnv7__14195v1 atm_fr_11dsdeo__14195v1 atm_cx_1l7b3ar__14195v1 atm_le_1l7b3ar__14195v1 dir dir-ltr').find_all()[1]
+                reviewIndex = listing_soup.find('div', class_ = 'a8jhwcl atm_c8_vvn7el atm_g3_k2d186 atm_fr_1vi102y atm_9s_1txwivl atm_ar_1bp4okc atm_h_1h6ojuz atm_cx_t94yts atm_le_14y27yu atm_c8_sz6sci__14195v1 atm_g3_17zsb9a__14195v1 atm_fr_kzfbxz__14195v1 atm_cx_1l7b3ar__14195v1 atm_le_1l7b3ar__14195v1 dir dir-ltr').find_all()[1]
             else:
                 reviewIndex = listing_soup.find('div', class_='r1lutz1s atm_c8_o7aogt atm_c8_l52nlx__oggzyc dir dir-ltr')
 
@@ -237,9 +315,9 @@ def fetch_properties(driver, div1, div2):
         try:
             if isGuestFav:
                 # Find div that includes the guest favorite container
-                reviewNum = listing_soup.find('div', class_ = 'r16onr0j atm_c8_exq1xd atm_g3_1pezo5y atm_fr_7aerd4 atm_gq_myb0kj atm_vv_qvpr2i atm_c8_8nb4eg__14195v1 atm_g3_1dpnnv7__14195v1 atm_fr_11dsdeo__14195v1 atm_gq_idpfg4__14195v1 dir dir-ltr')
+                reviewNum = listing_soup.find('div', class_ = 'r16onr0j atm_c8_vvn7el atm_g3_k2d186 atm_fr_1vi102y atm_gq_myb0kj atm_vv_qvpr2i atm_c8_sz6sci__14195v1 atm_g3_17zsb9a__14195v1 atm_fr_kzfbxz__14195v1 atm_gq_idpfg4__14195v1 dir dir-ltr')
             else:
-                reviewNum = listing_soup.find('a', class_='l1ovpqvx atm_1y33qqm_1ggndnn_10saat9 atm_17zvjtw_zk357r_10saat9 atm_w3cb4q_il40rs_10saat9 atm_1cumors_fps5y7_10saat9 atm_52zhnh_1s82m0i_10saat9 atm_jiyzzr_1d07xhn_10saat9 b1uxatsa atm_c8_1kw7nm4 atm_bx_1kw7nm4 atm_cd_1kw7nm4 atm_ci_1kw7nm4 atm_g3_1kw7nm4 atm_9j_tlke0l_1nos8r_uv4tnr atm_7l_1kw7nm4_pfnrn2 atm_rd_8stvzk_pfnrn2 c1qih7tm atm_1s_glywfm atm_26_1j28jx2 atm_3f_idpfg4 atm_9j_tlke0l atm_gi_idpfg4 atm_l8_idpfg4 atm_vb_1wugsn5 atm_7l_ujz1go atm_rd_8stvzk atm_5j_mlmjl2 atm_cs_qo5vgd atm_r3_1kw7nm4 atm_mk_h2mmj6 atm_kd_glywfm atm_9j_13gfvf7_1o5j5ji atm_7l_ujz1go_v5whe7 atm_rd_8stvzk_v5whe7 atm_7l_h5wwlf_1nos8r_uv4tnr atm_rd_8stvzk_1nos8r_uv4tnr atm_7l_xgd4j5_4fughm_uv4tnr atm_rd_8stvzk_4fughm_uv4tnr atm_rd_8stvzk_xggcrc_uv4tnr atm_7l_1eisd1c_csw3t1 atm_rd_8stvzk_csw3t1 atm_3f_glywfm_jo46a5 atm_l8_idpfg4_jo46a5 atm_gi_idpfg4_jo46a5 atm_3f_glywfm_1icshfk atm_kd_glywfm_19774hq atm_7l_ujz1go_1w3cfyq atm_rd_8stvzk_1w3cfyq atm_uc_x37zl0_1w3cfyq atm_70_1ocnt96_1w3cfyq atm_uc_glywfm_1w3cfyq_1rrf6b5 atm_7l_ujz1go_18zk5v0 atm_rd_8stvzk_18zk5v0 atm_uc_x37zl0_18zk5v0 atm_70_1ocnt96_18zk5v0 atm_uc_glywfm_18zk5v0_1rrf6b5 atm_7l_xgd4j5_1o5j5ji atm_rd_8stvzk_1o5j5ji atm_rd_8stvzk_1mj13j2 dir dir-ltr')
+                reviewNum = listing_soup.find('a', class_='l1ovpqvx atm_1he2i46_1k8pnbi_10saat9 atm_yxpdqi_1pv6nv4_10saat9 atm_1a0hdzc_w1h1e8_10saat9 atm_ywwsz3_1afjdsa_10saat9 atm_1lnvhrj_zhgkwc_10saat9 atm_8i46q5_63ecz1_10saat9 b1uxatsa atm_c8_1kw7nm4 atm_bx_1kw7nm4 atm_cd_1kw7nm4 atm_ci_1kw7nm4 atm_g3_1kw7nm4 atm_9j_tlke0l_1nos8r_uv4tnr atm_7l_1kw7nm4_pfnrn2 atm_rd_8stvzk_pfnrn2 c1qih7tm atm_1s_glywfm atm_26_1j28jx2 atm_3f_idpfg4 atm_9j_tlke0l atm_gi_idpfg4 atm_l8_idpfg4 atm_vb_1wugsn5 atm_7l_jt7fhx atm_rd_8stvzk atm_5j_1896hn4 atm_cs_9dzvea atm_r3_1kw7nm4 atm_mk_h2mmj6 atm_kd_glywfm atm_9j_13gfvf7_1o5j5ji atm_7l_jt7fhx_v5whe7 atm_rd_8stvzk_v5whe7 atm_7l_177r58q_1nos8r_uv4tnr atm_rd_8stvzk_1nos8r_uv4tnr atm_7l_9vytuy_4fughm_uv4tnr atm_rd_8stvzk_4fughm_uv4tnr atm_rd_8stvzk_xggcrc_uv4tnr atm_7l_1he744i_csw3t1 atm_rd_8stvzk_csw3t1 atm_3f_glywfm_jo46a5 atm_l8_idpfg4_jo46a5 atm_gi_idpfg4_jo46a5 atm_3f_glywfm_1icshfk atm_kd_glywfm_19774hq atm_7l_jt7fhx_1w3cfyq atm_rd_8stvzk_1w3cfyq atm_uc_aaiy6o_1w3cfyq atm_70_1p56tq7_1w3cfyq atm_uc_glywfm_1w3cfyq_1rrf6b5 atm_7l_jt7fhx_pfnrn2_1oszvuo atm_rd_8stvzk_pfnrn2_1oszvuo atm_uc_aaiy6o_pfnrn2_1oszvuo atm_70_1p56tq7_pfnrn2_1oszvuo atm_uc_glywfm_pfnrn2_1o31aam atm_7l_9vytuy_1o5j5ji atm_rd_8stvzk_1o5j5ji atm_rd_8stvzk_1mj13j2 dir dir-ltr')
 
             # None can also be valid when few reviews have been reported
             reviewNum = reviewNum.text if reviewNum else None
@@ -249,7 +327,7 @@ def fetch_properties(driver, div1, div2):
 
         try:
             # Find hostname 
-            hostname = listing_soup.find('div', class_='t1pxe1a4 atm_c8_8ycq01 atm_g3_adnk3f atm_fr_rvubnj atm_cs_qo5vgd dir dir-ltr')
+            hostname = listing_soup.find('div', class_='t1pxe1a4 atm_c8_2x1prs atm_g3_1jbyh58 atm_fr_11a07z3 atm_cs_9dzvea dir dir-ltr')
             hostname = hostname.text if hostname else None
         except Exception:
             pass
@@ -309,12 +387,12 @@ def listing_wrapper(driver, div1, div2):
 
 
 
-def scrape_airbnb_listings():
+def scrape_airbnb_listings(url_to_fetch):
     driver = webdriver.Chrome()
-    base_url = "https://www.airbnb.com/s/Thessaloniki/homes"  # Replace with your target search
+    base_url = url_to_fetch  # Replace with your target search
     driver.get(base_url)
     # Wait five secs to fetch all listings. 
-    time.sleep(5)
+    time.sleep(1.2 + SLEEP_OVERHEAD)
 
     current_page = 0
 
@@ -323,7 +401,6 @@ def scrape_airbnb_listings():
         start_pg_time = time.time()
         if current_page == PAGE_TO_BREAK:
             logging.info(f"Reached page {current_page}, breaking...")
-            export_data()
             break
 
         logging.info(f"Scraping page: {current_page}")
@@ -344,11 +421,11 @@ def scrape_airbnb_listings():
         logging.info(f"Number of listings found in page {current_page} : {len(listings)}")
 
         for listing_num, listing in enumerate(listings):
-            time.sleep(1.5)
+            time.sleep(1+ SLEEP_OVERHEAD)
             logging.info("=====================================================================================")
-            logging.info(f"Fetching listing {listing_num+1} out of {len(listings)} listings in page {current_page}.")
+            logging.info(f"Fetching listing {listing_num+1} out of {len(listings)} listings in page {current_page} of url: {base_url}.")
             try: 
-                listing_url = listing.find('a', class_='atm_uc_glywfm_18zk5v0_pynvjw')['href']  # Adjust if needed 
+                listing_url = listing.find('a', class_='l1ovpqvx atm_1he2i46_1k8pnbi_10saat9 atm_yxpdqi_1pv6nv4_10saat9 atm_1a0hdzc_w1h1e8_10saat9 atm_ywwsz3_1afjdsa_10saat9 atm_1lnvhrj_zhgkwc_10saat9 atm_8i46q5_63ecz1_10saat9 bn2bl2p atm_5j_223wjw atm_9s_1ulexfb atm_e2_1osqo2v atm_fq_idpfg4 atm_mk_stnw88 atm_tk_idpfg4 atm_vy_1osqo2v atm_26_1j28jx2 atm_3f_glywfm atm_kd_glywfm atm_3f_glywfm_jo46a5 atm_l8_idpfg4_jo46a5 atm_gi_idpfg4_jo46a5 atm_3f_glywfm_1icshfk atm_kd_glywfm_19774hq atm_uc_aaiy6o_1w3cfyq_oggzyc atm_70_1b8lkes_1w3cfyq_oggzyc atm_uc_glywfm_1w3cfyq_pynvjw atm_uc_aaiy6o_pfnrn2_ivgyl9 atm_70_1b8lkes_pfnrn2_ivgyl9 atm_uc_glywfm_pfnrn2_61fwbc dir dir-ltr')['href']  # Adjust if needed 
             except:
                 logging.error("Increase time wait at initial page fetching.")
                 break
@@ -359,7 +436,7 @@ def scrape_airbnb_listings():
 
             # Remove translate popup case
             try:
-                time.sleep(2)
+                time.sleep(1+ SLEEP_OVERHEAD)
                 popup = driver.find_element(By.XPATH, '/html/body/div[9]/div/div/section/div/div/div[2]/div')
                 logging.info("Translate Popup found. Closing...")
                 if popup:
@@ -368,9 +445,9 @@ def scrape_airbnb_listings():
                 logging.info("Translate Popup not found.")
 
             # Wait to fetch screen
-            time.sleep(1)
-            driver.execute_script("window.scrollBy(0,4000)")
-            time.sleep(1)
+            time.sleep(1+ SLEEP_OVERHEAD)
+            driver.execute_script("window.scrollBy(0,5000)")
+            time.sleep(1+ SLEEP_OVERHEAD)
 
             # Single WebDriverWait and fetch properties
             try:
@@ -383,19 +460,80 @@ def scrape_airbnb_listings():
             driver.back()  # Go back to the listings page
 
         logging.info(f"Page fetching time : {time.time() - start_pg_time} seconds. ")
+        # Export current data at end of region search
+        # Each region wil output the updated 
+        export_data()
 
         # Find and click on the "next" button (if it exists)
         try:
+            time.sleep(0.5+ SLEEP_OVERHEAD)
             next_button = driver.find_element(By.CSS_SELECTOR, '[aria-label="Next"]')
             next_button.click()
-            time.sleep(2)  # Small delay to allow page to load
+            time.sleep(1.2+ SLEEP_OVERHEAD)  # Small delay to allow page to load
         except:
             logging.info("Reached the end of the listings!")
-            export_data()
-            # TODO
-            # DataFrame Post Processing
             break
 
     driver.quit()
 
-scrape_airbnb_listings()
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description="This script fetches information from airbnb according to provided urls.")
+    parser.add_argument("-u", "--url", dest="url",
+                        default="https://airbnb.com/s/Ampelokipoi~Menemeni--Greece/homes,https://airbnb.com/s/Evosmos--%CE%98%CE%B5%CF%83%CF%83%CE%B1%CE%BB%CE%BF%CE%BD%CE%AF%CE%BA%CE%B7/homes,https://airbnb.com/s/Stavroupoli--%CE%95%CE%BB%CE%BB%CE%AC%CE%B4%CE%B1/homes",
+                        type=str, help="URLs to fetch comma seperated.")
+    parser.add_argument("-p", "--pages", dest="pages",
+                        default="30", type=int,
+                        help="Pages to fetch until breaking and continuing to next url.")
+    parser.add_argument("-t", "--timeout", dest="timeout",
+                        default="30", type=int,
+                        help="Wait until designated number of seconds to fetch pages before performing timeout.")
+    parser.add_argument("-f", "--filter", dest="filter",
+                        default="kordelio - Evosmos Municipality/Ampelokipi - Menemeni Municipality/Stavroupoli Municipal Unit, Thessaloniki", type=str)
+    parser.add_argument("-o", "--overhead", dest="overhead", type=float,
+                        default=0.5)
+
+    if len(sys.argv) < 1:
+        parser.print_help()
+        sys.exit(1)
+
+    script_path = os.path.abspath(sys.argv[0])
+    print(f"The path of the currently executing script is: {script_path}")
+    # Go up three levels
+    parent_directory = os.path.dirname(script_path)
+    for _ in range(2):
+        parent_directory = os.path.dirname(parent_directory)
+
+    # Configure logging
+    current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
+    logging.basicConfig(filename=parent_directory+f'/logs/scrapapp_{current_time}.log', level=logging.INFO,
+                        format='%(asctime)s - %(levelname)s - %(message)s')
+
+    # Create a handler for writing log messages to the standard output (console)
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setLevel(logging.INFO)
+
+    # Create a formatter for the console handler
+    console_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+
+    # Add the formatter to the console handler
+    console_handler.setFormatter(console_formatter)
+
+    # Add the console handler to the root logger
+    logging.getLogger('').addHandler(console_handler)
+
+    logging.info(f"Logfile will be saved at path: {parent_directory+f'/logs/scrapapp_{current_time}.log'}")
+    logging.info(f"Data will be saved at path: {parent_directory+f"/data/listing_data_{current_time}.csv"}")
+
+    args = parser.parse_args()
+
+    TIMEOUT = args.timeout
+    PAGE_TO_BREAK = args.pages + 1
+    AREAS_TO_FILTER = args.filter.split('/') # list
+    SLEEP_OVERHEAD = args.overhead
+
+    urls_list = args.url.split(',')
+
+    for _ , url_to_fetch in enumerate(urls_list):
+        scrape_airbnb_listings(url_to_fetch)
+
