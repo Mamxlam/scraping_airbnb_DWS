@@ -3,11 +3,11 @@ import pymongo
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
-HOST_NAME = 'db.csd.auth.gr'
-PASSWORD = 'Gm8WQhwE'
-USERNAME = 'eu'
-AUTH_SOURCE ='admin'
-PORT = 27117
+HOST_NAME = 'host'
+PASSWORD = 'pass'
+USERNAME = 'username'
+AUTH_SOURCE ='auth source'
+PORT = 'port'
 
 
 
